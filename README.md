@@ -50,11 +50,11 @@ Sensor threshold configuration is handled by the **_TH** directives in **AP-Home
 
 ## Building
 
-1. The ESP8266 mcu has to be set as the active build target:
+1. The ESP8266 mcu has to be set as the active build **target**:
 
 ![Image of Building](https://i.ibb.co/dKZLKC0/Arduino-target.png)
 
-2. The NodeMCU devboard serial port has to be selected:
+2. The NodeMCU devboard serial **port** has to be selected:
 
 ![Image of Serial Port](https://i.ibb.co/NKj9jyp/serial-Port-duino.png)
 
@@ -80,15 +80,19 @@ AP-Nurse Home unit debugging is handled via UART bus connected to the ESP8266 No
 
 ![Image of Serial Monitor Serial port](https://i.ibb.co/wJyc1jW/serialport-hterm.png)
 
+
 2. Select Baud rate 115200 and new line on new line (\n or LF) 
 
 ![Image of baud rate](https://i.ibb.co/dtS7ngd/hterm-baud.png)
 
 ![Image of newline](https://i.ibb.co/VgR9Bms/newline.png)
 
+
 3. Connect to your board
 
 ![Image of Connect](https://i.ibb.co/BBL4D6z/connect.png)
+
+![Image of Connected](https://i.ibb.co/6mWPY6c/connected.png)
 
 
 The AP-Nurse Home unit periodically updates sensor data and prints a **status code**. Individual status codes with their respective meaning are listed in the **ap_alert** enumeration in **AP_Nurse_types.h**
