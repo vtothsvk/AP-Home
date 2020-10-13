@@ -80,7 +80,7 @@ AP-Nurse Home unit debugging is handled via UART bus connected to the ESP8266 No
 
 ![Image of Serial Monitor Serial port](https://i.ibb.co/wJyc1jW/serialport-hterm.png)
 
-**2.** Select a **115200** b/s **baud rate** and **new line** at **new line character**(\n or LF) 
+**2.** Select a **115200** bit/s **baud rate** and **new line** at **new line character**(\n or LF) 
 
 ![Image of baud rate](https://i.ibb.co/dtS7ngd/hterm-baud.png)
 
