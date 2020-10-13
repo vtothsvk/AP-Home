@@ -67,3 +67,8 @@ Flashing:
 * In Eclipse: **CTRL+B**
 
 ## Debugging
+
+AP-Nurse Home unit debugging is handled via UART bus connected to the ESP8266 NodeMCU devboard USB port.
+
+1. When plugged in to your computer connect to the board Serial port using any serial monitor software (such as HTerm or TeraTerm or the Arduino IDE Serial Monitor).
+2. Select Baud rate 115200 and new line on new line (\n or LF) 
