@@ -98,7 +98,7 @@ The AP-Nurse Home unit periodically updates sensor data and prints a **status co
 ```C++
 /** AP Nurse Alert type
  * 
- *  @note each alert uses a nth bit of the status code allowing multiple simultaneous alert triggers
+ *  @note each alert has a dedicated bit of the status code allowing multiple simultaneous alert triggers
  */
 #ifndef ap_alert_type
 #define ap_alert_type
