@@ -9,7 +9,7 @@
 
 /** Binary print format macro
  * 
- *  @returns binary string
+ *  @returns 8b long binary string
  */ 
 #define BYTE_TO_BINARY(byte)  \
 (byte & 0x80 ? '1' : '0'), \
