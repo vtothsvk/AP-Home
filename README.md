@@ -22,7 +22,7 @@ Custom FW of the AP-Nurse Home node based on the ESP8266 Arduino core.
 To programme, build and flash the app u'll need **Arduino IDE v 1.8.9** with the **ESP8266 package**
 
 * https://www.arduino.cc/download_handler.php?f=/arduino-1.8.9-windows.exe (Windows)
-* https://www.arduino.cc/download_handler.php?f=/arduino-1.8.8-linux64.tar.xz (Linux)
+* https://www.arduino.cc/download_handler.php?f=/arduino-1.8.9-linux64.tar.xz (Linux)
 
 ESP8266 package installation tutorial:
 
