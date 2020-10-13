@@ -38,12 +38,12 @@
 #define ap_alert_type
 typedef enum ap_alert{
     STATUS_OK = 0,      
-    MOTION_ALERT = 1,   //0b0000 0001
-    NOISE_ALERT = 2,    //0b0000 0010
-    SMOKE_ALERT = 4,    //0b0000 0100
-    GAS_ALERT = 8,      //0b0000 1000
-    LIGHT_ALERT = 16,   //0b0001 0000
-    PRESSURE_ALERT = 32,//0b0010 0000
+    MOTION_ALERT = 1,       //0b00000001
+    NOISE_ALERT = 2,        //0b00000010
+    SMOKE_ALERT = 4,        //0b00000100
+    GAS_ALERT = 8,          //0b00001000
+    LIGHT_ALERT = 16,       //0b00010000
+    PRESSURE_ALERT = 32,    //0b00100000
     GENERAL_ALERT = -1000,
     I2C_NO_DATA = -1001
 }status_t;
