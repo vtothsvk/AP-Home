@@ -35,4 +35,13 @@ Ideally u can set up Arduino core projet support within **Visual Studio Code** o
 
 To programme the app open the Arduino core project **AP-Home.ino**
 
-Sensor threshold configuration is handled by the **_TH** Directives
+Sensor threshold configuration is handled by the **_TH** directives:
+
+```
+#define NOISE_TH        255
+#define SMOKE_TH        255
+#define GAS_TH          60
+#define LIGHT_TH        80
+#define PRESSURE_TH     80
+#define TEMP_TH         255
+```
