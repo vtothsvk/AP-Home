@@ -32,7 +32,7 @@
 
 /** AP Nurse Alert type
  * 
- *  @note each alert uses a nth bit of the status code allowing multiple simultanious alert triggers
+ *  @note each alert uses a dedicated bit of the status code allowing multiple simultanious alert triggers
  */
 #ifndef ap_alert_type
 #define ap_alert_type
