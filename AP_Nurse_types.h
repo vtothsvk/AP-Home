@@ -11,17 +11,19 @@
 #define DISABLE 0
 
 /** AP Nurse Alert type
+ * 
+ *  @note each alert uses a nth bit of the status code allowing multiple simultanious alert triggers
  */
 #ifndef ap_alert_type
 #define ap_alert_type
 typedef enum ap_alert{
-    STATUS_OK = 0,
-    MOTION_ALERT = 1,
-    NOISE_ALERT = 2,
-    SMOKE_ALERT = 4,
-    GAS_ALERT = 8,
-    LIGHT_ALERT = 16,
-    PRESSURE_ALERT = 32,
+    STATUS_OK = 0,      
+    MOTION_ALERT = 1,   //0b0000 0001
+    NOISE_ALERT = 2,    //0b0000 0010
+    SMOKE_ALERT = 4,    //0b0000 0100
+    GAS_ALERT = 8,      //0b0000 1000
+    LIGHT_ALERT = 16,   //0b0001 0000
+    PRESSURE_ALERT = 32,//0b0010 0000
     GENERAL_ALERT = -1000,
     I2C_NO_DATA = -1001
 }status_t;

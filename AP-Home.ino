@@ -7,9 +7,10 @@
 
 #define muteDuration    2000
 
-#define TE  12
 #define pWidth  100
 
+/** Threshold directives  
+ */ 
 #define NOISE_TH        255
 #define SMOKE_TH        255
 #define GAS_TH          60
