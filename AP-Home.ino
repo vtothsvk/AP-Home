@@ -1,4 +1,4 @@
-#include <ESP8266WiFi.h>
+#include <ESP8266WiFi.h>    
 #include "AP_Nurse.h"
 #include "ClickButton.h"
 
@@ -30,7 +30,7 @@ volatile bool wasAlert = false;;
 volatile long muteStart = 0;
 
 void setup(){
-    //button setup
+    //Button setup
     button.debounceTime = 50;
     button.multiclickTime = 250;
     button.longClickTime = 4000;
@@ -46,9 +46,17 @@ void loop(){
     AP_loop(alert);//ap node loop body
 }
 
-//ap node main loop body
+//Ap node main loop body
 void AP_loop(uint8_t alert){
-    Serial.println(alert); //debug alert
+    //Alert debug
+    if(0 < alert){
+        char buffer[9];
+        sprintf(&buffer[0], BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY(alert));
+        Serial.print(buffer);    
+    }else{
+        Serial.println(alert); //debug alert
+    }//if(0 < alert){
+    
     
     //Alert handling
     if(alert&&(!muted)){
@@ -67,7 +75,7 @@ void AP_loop(uint8_t alert){
     }
 }
 
-//alert handler
+//Alert handler
 int Alert(bool enable){
     if(enable){
         digitalWrite(ENCODER_PIN, LOW);
@@ -94,7 +102,7 @@ int Alert(bool enable){
     return 0;
 }
 
-//encoder transmission enable handler
+//Encoder transmission enable handler
 void pulse(){
     digitalWrite(TE, LOW);
     delay(pWidth);

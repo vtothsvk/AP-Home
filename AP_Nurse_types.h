@@ -1,6 +1,26 @@
 #ifndef AP_Nurse_types_h
 #define AP_Nurse_types_h
 
+/** Custom print pattern
+ * 
+ *  @note 8c for 8b of an uint8_t
+ */ 
+#define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c"
+
+/** Binary print format macro
+ * 
+ *  @returns binary string
+ */ 
+#define BYTE_TO_BINARY(byte)  \
+(byte & 0x80 ? '1' : '0'), \
+(byte & 0x40 ? '1' : '0'), \
+(byte & 0x20 ? '1' : '0'), \
+(byte & 0x10 ? '1' : '0'), \
+(byte & 0x08 ? '1' : '0'), \
+(byte & 0x04 ? '1' : '0'), \
+(byte & 0x02 ? '1' : '0'), \
+(byte & 0x01 ? '1' : '0')
+
 /** ADC Extender I2C address
  */
 #define EXTENDER_ADDR   (0x48)
