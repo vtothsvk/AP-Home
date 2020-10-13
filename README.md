@@ -4,7 +4,7 @@ Custom FW of the AP-Nurse Home node based on the ESP8266 Arduino core.
 
 ## Files
 
-* **AP-Home.ino** - main app
+* **AP-Home.ino** - main app - Arduino core project
 * **AP_Nurse_Home_pinout.h** - board pinout
 * **AP_Nurse.h** - AP-Home controll interface header
 * **AP_Nurse_types.h** - important type and structure, macro and directive definitions
@@ -17,13 +17,22 @@ Custom FW of the AP-Nurse Home node based on the ESP8266 Arduino core.
 
 ## Programming
 
-To programm, build and flash the app u need **Arduino IDE v 1.8.9** with the **ESP8266 package**
+## IDE setup
+
+To programme, build and flash the app u need **Arduino IDE v 1.8.9** with the **ESP8266 package**
 
 * https://www.arduino.cc/download_handler.php?f=/arduino-1.8.9-windows.exe (Windows)
 * https://www.arduino.cc/download_handler.php?f=/arduino-1.8.8-linux64.tar.xz (Linux)
 
 https://randomnerdtutorials.com/how-to-install-esp8266-board-arduino-ide/ ESP8266 package installation tutorial
 
-Ideally u can set up Arduino IDE support with **Visual Studio Code** or **Eclipse IDE**
+Ideally u can set up Arduino core projet support within **Visual Studio Code** or **Eclipse IDE**
 
-*
+* https://maker.pro/arduino/tutorial/how-to-use-visual-studio-code-for-arduino (VSCode tutorial)
+* https://www.eclipse.org/community/eclipse_newsletter/2017/april/article4.php (Eclipse tutorial)
+
+## Programming
+
+To programme the app open the Arduino core project **AP-Home.ino**
+
+Sensor threshold configuration is handled by the **_TH** Directives
