@@ -70,7 +70,7 @@ Sensor threshold configuration is handled by the **_TH** directives in **AP-Home
 
 * In Arduino IDE: **CTRL+U**;
 * In VSCode: **CTRL+ALT+U**
-* In Eclipse: **CTRL+B**
+* In Eclipse: **CTRL+F11**
 
 ## Debugging
 
