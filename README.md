@@ -22,7 +22,7 @@ To programm, build and flash the app u need **Arduino IDE v 1.8.9** with the **E
 * https://www.arduino.cc/download_handler.php?f=/arduino-1.8.9-windows.exe (Windows)
 * https://www.arduino.cc/download_handler.php?f=/arduino-1.8.8-linux64.tar.xz (Linux)
 
-* https://randomnerdtutorials.com/how-to-install-esp8266-board-arduino-ide/ ESP8266 package installation tutorial
+https://randomnerdtutorials.com/how-to-install-esp8266-board-arduino-ide/ ESP8266 package installation tutorial
 
 Ideally u can set up Arduino IDE support with **Visual Studio Code** or **Eclipse IDE**
 
