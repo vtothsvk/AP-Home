@@ -60,7 +60,7 @@ Sensor threshold configuration is handled by the **_TH** directives in **AP-Home
 
 *your board COM port may vary
 
-### Building (Compiling and linking into a .elf image):
+### Building (compiling and linking into a .elf image):
 
 * In Arduino IDE: **CTRL+R**
 * In VSCode: **CTRL+ALT+R**
