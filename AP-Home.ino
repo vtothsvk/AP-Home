@@ -48,6 +48,7 @@ void loop(){
 //ap node main loop body
 void AP_loop(uint8_t alert){
     Serial.println(alert); //debug alert
+    
     //Alert handling
     if(alert&&(!muted)){
         Alert(ENABLE);
