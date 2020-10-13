@@ -72,3 +72,19 @@ AP-Nurse Home unit debugging is handled via UART bus connected to the ESP8266 No
 
 1. When plugged in to your computer connect to the board Serial port using any serial monitor software (such as HTerm or TeraTerm or the Arduino IDE Serial Monitor).
 2. Select Baud rate 115200 and new line on new line (\n or LF) 
+
+The AP-Nurse Home unit periodically updates sensor data and prints a **status code**. Individual status codes with their respective meaning are listed in the **ap_alert** enumeration in **AP_Nurse_types.h**
+
+```C++
+typedef enum ap_alert{
+    STATUS_OK = 0,
+    MOTION_ALERT = 1,
+    NOISE_ALERT = 2,
+    SMOKE_ALERT = 4,
+    GAS_ALERT = 8,
+    LIGHT_ALERT = 16,
+    PRESSURE_ALERT = 32,
+    GENERAL_ALERT = -1000,
+    I2C_NO_DATA = -1001
+}status_t;
+```
