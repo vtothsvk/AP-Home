@@ -37,7 +37,7 @@ Ideally u can set up Arduino core projet support within **Visual Studio Code** o
 
 To programme the app open the Arduino core project **AP-Home.ino**
 
-Sensor threshold configuration is handled by the **_TH** directives:
+Sensor threshold configuration is handled by the **_TH** directives in **AP-Home.ino**:
 
 ```C++
 #define NOISE_TH        255
@@ -50,9 +50,14 @@ Sensor threshold configuration is handled by the **_TH** directives:
 
 ## Building
 
-To build the app, first the ESP8266 mcu has to be set as the active build target:
+Building the app:
+
+1. The ESP8266 mcu has to be set as the active build target:
 
 ![Image of Building](https://i.ibb.co/dKZLKC0/Arduino-target.png)
+
+2. The NodeMCU devboard serial port has to be selected:
+
 
 Building (Compiling and linking into a .elf image):
 
