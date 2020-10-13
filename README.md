@@ -50,8 +50,6 @@ Sensor threshold configuration is handled by the **_TH** directives in **AP-Home
 
 ## Building
 
-Building the app:
-
 1. The ESP8266 mcu has to be set as the active build target:
 
 ![Image of Building](https://i.ibb.co/dKZLKC0/Arduino-target.png)
@@ -59,13 +57,13 @@ Building the app:
 2. The NodeMCU devboard serial port has to be selected:
 
 
-Building (Compiling and linking into a .elf image):
+### Building (Compiling and linking into a .elf image):
 
 * In Arduino IDE: **CTRL+R**
 * In VSCode: **CTRL+ALT+R**
 * In Eclipse: **CTRL+B**
 
-Flashing:
+### Flashing:
 
 * In Arduino IDE: **CTRL+U**
 * In VSCode: **CTRL+ALT+U**
