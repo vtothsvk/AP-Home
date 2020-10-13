@@ -45,3 +45,19 @@ Sensor threshold configuration is handled by the **_TH** directives:
 #define PRESSURE_TH     80
 #define TEMP_TH         255
 ```
+
+## Building
+
+To build the app, first the ESP8266 mcu has to be set as the active build target:
+
+Building:
+
+* In Arduino IDE: **CTRL+R**
+* In VSCode: **CTRL+ALT+R**
+* In Eclipse: **CTRL+B**
+
+Flashing:
+
+* In Arduino IDE: **CTRL+U**
+* In VSCode: **CTRL+ALT+U**
+* In Eclipse: **CTRL+B**
