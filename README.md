@@ -76,17 +76,17 @@ Sensor threshold configuration is handled by the **_TH** directives in **AP-Home
 
 AP-Nurse Home unit debugging is handled via UART bus connected to the ESP8266 NodeMCU devboard USB port.
 
-**1.** When plugged in to your computer, connect to the board Serial port using a serial monitor terminal of your choice (eg. HTerm, TeraTerm or the Arduino IDE Serial Monitor).
+**1.** When plugged in to your computer, connect to the board **Serial port** using a **serial monitor terminal** of your choice (eg. HTerm, TeraTerm or the Arduino IDE Serial Monitor).
 
 ![Image of Serial Monitor Serial port](https://i.ibb.co/wJyc1jW/serialport-hterm.png)
 
-**2.** Select Baud rate 115200 and new line on new line (\n or LF) 
+**2.** Select a **115200** b/s **baud rate** and **new line** at **new line character**(\n or LF) 
 
 ![Image of baud rate](https://i.ibb.co/dtS7ngd/hterm-baud.png)
 
 ![Image of newline](https://i.ibb.co/VgR9Bms/newline.png)
 
-**3.** Connect to your board
+**3.** **Connect** to your board
 
 ![Image of Connect](https://i.ibb.co/BBL4D6z/connect.png)
 
