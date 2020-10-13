@@ -50,6 +50,8 @@ Sensor threshold configuration is handled by the **_TH** directives:
 
 To build the app, first the ESP8266 mcu has to be set as the active build target:
 
+![Image of Building](https://ibb.co/XJH3J0Z)
+
 Building:
 
 * In Arduino IDE: **CTRL+R**
