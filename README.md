@@ -56,6 +56,9 @@ Sensor threshold configuration is handled by the **_TH** directives in **AP-Home
 
 2. The NodeMCU devboard serial port has to be selected:
 
+![Image of Serial Port](https://i.ibb.co/NKj9jyp/serial-Port-duino.png)
+
+*your board COM port may vary
 
 ### Building (Compiling and linking into a .elf image):
 
@@ -74,7 +77,19 @@ Sensor threshold configuration is handled by the **_TH** directives in **AP-Home
 AP-Nurse Home unit debugging is handled via UART bus connected to the ESP8266 NodeMCU devboard USB port.
 
 1. When plugged in to your computer connect to the board Serial port using any serial monitor software (such as HTerm or TeraTerm or the Arduino IDE Serial Monitor).
+
+![Image of Serial Monitor Serial port](https://i.ibb.co/wJyc1jW/serialport-hterm.png)
+
 2. Select Baud rate 115200 and new line on new line (\n or LF) 
+
+![Image of baud rate](https://i.ibb.co/dtS7ngd/hterm-baud.png)
+
+![Image of newline](https://i.ibb.co/VgR9Bms/newline.png)
+
+3. Connect to your board
+
+![Image of Connect](https://i.ibb.co/BBL4D6z/connect.png)
+
 
 The AP-Nurse Home unit periodically updates sensor data and prints a **status code**. Individual status codes with their respective meaning are listed in the **ap_alert** enumeration in **AP_Nurse_types.h**
 
