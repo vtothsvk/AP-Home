@@ -54,7 +54,9 @@ Sensor threshold configuration is handled by the **_TH** directives in **AP-Home
 
 ![Image of Building](https://i.ibb.co/dKZLKC0/Arduino-target.png)
 
-2. The NodeMCU devboard serial **port** has to be selected:
+
+
+2. The NodeMCU devboard **serial port** has to be selected:
 
 ![Image of Serial Port](https://i.ibb.co/NKj9jyp/serial-Port-duino.png)
 
@@ -81,11 +83,13 @@ AP-Nurse Home unit debugging is handled via UART bus connected to the ESP8266 No
 ![Image of Serial Monitor Serial port](https://i.ibb.co/wJyc1jW/serialport-hterm.png)
 
 
+
 2. Select Baud rate 115200 and new line on new line (\n or LF) 
 
 ![Image of baud rate](https://i.ibb.co/dtS7ngd/hterm-baud.png)
 
 ![Image of newline](https://i.ibb.co/VgR9Bms/newline.png)
+
 
 
 3. Connect to your board
