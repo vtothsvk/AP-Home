@@ -55,7 +55,7 @@ void AP_loop(uint8_t alert){
         Serial.print(buffer);    
     }else{
         Serial.println(alert); //debug alert
-    }//if(0 < alert){
+    }//if(0 < alert)
     
     
     //Alert handling
@@ -88,7 +88,7 @@ int Alert(bool enable){
         wasAlert = true;
         pulse();
         return 1;
-    }
+    }//if(enable)
 
     digitalWrite(ENCODER_PIN, HIGH);
     digitalWrite(ENCODER_PIN2, HIGH);
