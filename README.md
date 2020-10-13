@@ -7,7 +7,7 @@ Custom FW of the AP-Nurse Home node based on the ESP8266 Arduino core.
 * **AP-Home.ino** - main app - Arduino core project
 * **AP_Nurse_Home_pinout.h** - board pinout
 * **AP_Nurse.h** - AP-Home controll interface header
-* **AP_Nurse_types.h** - important type and structure, macro and directive definitions
+* **AP_Nurse_types.h** - important type, structure, macro and directive definitions
 * **AP_Nurse.cpp** - AP-Home controll interface implementation
 * **ClickButton.h** - Button handler library header
 * **ClickButton.cpp** - Button handler library implementation
