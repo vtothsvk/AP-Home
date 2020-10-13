@@ -37,7 +37,7 @@ To programme the app open the Arduino core project **AP-Home.ino**
 
 Sensor threshold configuration is handled by the **_TH** directives:
 
-```
+```C++
 #define NOISE_TH        255
 #define SMOKE_TH        255
 #define GAS_TH          60
