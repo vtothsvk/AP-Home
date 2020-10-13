@@ -24,7 +24,9 @@ To programme, build and flash the app u need **Arduino IDE v 1.8.9** with the **
 * https://www.arduino.cc/download_handler.php?f=/arduino-1.8.9-windows.exe (Windows)
 * https://www.arduino.cc/download_handler.php?f=/arduino-1.8.8-linux64.tar.xz (Linux)
 
-https://randomnerdtutorials.com/how-to-install-esp8266-board-arduino-ide/ ESP8266 package installation tutorial
+ESP8266 package installation tutorial:
+
+https://randomnerdtutorials.com/how-to-install-esp8266-board-arduino-ide/
 
 Ideally u can set up Arduino core projet support within **Visual Studio Code** or **Eclipse IDE**
 
@@ -52,7 +54,7 @@ To build the app, first the ESP8266 mcu has to be set as the active build target
 
 ![Image of Building](https://i.ibb.co/dKZLKC0/Arduino-target.png)
 
-Building:
+Building (Compiling and linking into a .elf image):
 
 * In Arduino IDE: **CTRL+R**
 * In VSCode: **CTRL+ALT+R**
@@ -63,3 +65,5 @@ Flashing:
 * In Arduino IDE: **CTRL+U**
 * In VSCode: **CTRL+ALT+U**
 * In Eclipse: **CTRL+B**
+
+## Debugging
