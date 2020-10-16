@@ -38,13 +38,13 @@ void setup(){
     //Serial com setup
     Serial.begin(115200);
     Serial.println("AP Nurse Universal V 1.0 Booted Succesfully ^^");
-}
+}//setup
 
 void loop(){
     button.Update();//updates button state
     uint8_t alert = ap_node.update();//updates sensor data
     AP_loop(alert);//ap node loop body
-}
+}//loop
 
 //Ap node main loop body
 void AP_loop(uint8_t alert){
@@ -73,7 +73,7 @@ void AP_loop(uint8_t alert){
     if((button.clicks == 1)){
         Serial.println("ťuk");
     }
-}
+}//AP_loop
 
 //Alert handler
 int Alert(bool enable){
@@ -100,11 +100,11 @@ int Alert(bool enable){
 
     pulse();
     return 0;
-}
+}//Alert
 
 //Encoder transmission enable handler
 void pulse(){
     digitalWrite(TE, LOW);
     delay(pWidth);
     digitalWrite(TE, HIGH);
-}
+}//pulse
