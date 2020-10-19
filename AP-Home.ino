@@ -11,8 +11,7 @@
 
 /** Threshold directives
  *
- *  @note each level represents one 225th of the reference voltage
- *        (eg. a threshold of 100 @ 3.3V represents 1.29V)
+ *  @note each level represents one 225th of the reference voltage (eg. a threshold of 100 @ 3.3V represents 1.29V)
  */ 
 #define NOISE_TH        255
 #define SMOKE_TH        255
