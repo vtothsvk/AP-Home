@@ -97,7 +97,7 @@ AP-Nurse Home unit debugging is handled via UART bus connected to the ESP8266 No
 ![Image of Connected](https://i.ibb.co/6mWPY6c/connected.png)
 
 
-The AP-Nurse Home unit periodically updates sensor data and prints a **status code**. Individual status codes with their respective meaning are listed in the **ap_alert** enumeration in **AP_Nurse_types.h**
+The AP-Nurse Home unit periodically updates sensor data and prints out a **status code**. Individual status codes with their respective meaning are listed in the **ap_alert** enumeration in **AP_Nurse_types.h**
 
 ```C++
 /** AP Nurse Alert type
