@@ -5,6 +5,12 @@
 //uncommenting next line enables buzzer
 //#define _BUZZER 
 
+//uncommenting the next line enables debug mode
+//#define _DEBUG
+#ifdef _DEBUG
+#define loopDelay   200
+#endif
+
 #define muteDuration    2000
 
 #define pWidth  100
@@ -46,6 +52,11 @@ void loop(){
     button.Update();//updates button state
     uint8_t alert = ap_node.update();//updates sensor data
     AP_loop(alert);//ap node loop body
+
+    #ifdef _DEBUG
+    delay(loopDelay);
+    ap_node.printData();
+    #endif
 }//loop
 
 //Ap node main loop body
