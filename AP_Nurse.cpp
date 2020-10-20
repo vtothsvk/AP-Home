@@ -54,6 +54,22 @@ uint8_t AP_Nurse::getLastPressure(){
     return (this -> ap_node.lastVal[4]);
 }
 
+void AP_Nurse::printData(){
+    Serial.println();
+    Serial.print("Motion:    ");
+    Serial.println(this -> getLastMotion());
+    Serial.print("Noise:     ");
+    Serial.println(this -> getLastNoise());
+    Serial.print("Smoke:     ");
+    Serial.println(this -> getLastSmoke());
+    Serial.print("Gas:       ");
+    Serial.println(this -> getLastGas());
+    Serial.print("Light:     ");
+    Serial.println(this -> getLastLight());
+    Serial.print("Pressure:  ");
+    Serial.println(this -> getLastPressure());
+}
+
 status_t AP_Nurse::checkMotion(){
     if(digitalRead(PIR_PIN)){
         this -> ap_node.lastAlert |= MOTION_ALERT;
