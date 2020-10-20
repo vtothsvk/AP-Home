@@ -96,7 +96,7 @@ int Alert(bool enable){
         digitalWrite(ENCODER_PIN2, LOW);
 
         #ifdef _BUZZER
-        tone(BUZZER_PIN, 1000);
+        digitalWrite(BUZZER_PIN, LOW);
         #endif
 
         wasAlert = true;
@@ -109,7 +109,7 @@ int Alert(bool enable){
     wasAlert = false;
 
     #ifdef _BUZZER
-    noTone(BUZZER_PIN);
+    digitalWrite(BUZZER_PIN, HIGH);
     #endif
 
     pulse();
