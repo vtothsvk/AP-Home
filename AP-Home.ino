@@ -6,7 +6,7 @@
 //#define _BUZZER 
 
 //uncommenting the next line enables debug mode
-#define _DEBUG
+//#define _DEBUG
 #ifdef _DEBUG
 #define loopDelay   200
 #endif
