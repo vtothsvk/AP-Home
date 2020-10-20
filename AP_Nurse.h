@@ -17,6 +17,7 @@ public:
     uint8_t getLastGas();
     uint8_t getLastLight();
     uint8_t getLastPressure();
+    void printData();
 
 protected:
     status_t checkMotion();

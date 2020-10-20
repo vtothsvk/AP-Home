@@ -3,9 +3,9 @@
 #include "ClickButton.h"
 
 //uncommenting next line enables buzzer
-//#define _BUZZER 
+//#define _BUZZER
 
-//uncommenting the next line enables debug mode
+//uncommenting the next line enables debug printout
 //#define _DEBUG
 #ifdef _DEBUG
 #define loopDelay   200
