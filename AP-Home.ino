@@ -65,7 +65,8 @@ void AP_loop(uint8_t alert){
     if(0 < alert){
         char buffer[9];
         sprintf(&buffer[0], BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY(alert));
-        Serial.println(buffer);    
+        Serial.print("STATUS: ");
+        Serial.println(buffer);  
     }else{
         Serial.println(alert); //debug alert
     }//if(0 < alert)
