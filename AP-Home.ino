@@ -43,7 +43,7 @@ void setup(){
     button.multiclickTime = 250;
     button.longClickTime = 4000;
 
-    //Serial com setup
+    //Serial comm setup
     Serial.begin(115200);
     Serial.println("AP Nurse Universal V 1.0 Booted Succesfully ^^");
 }//setup
