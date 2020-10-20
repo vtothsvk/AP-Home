@@ -13,8 +13,8 @@
  *
  *  @note each level represents one 255th of the reference voltage (eg. a threshold of 100 @ 3.3V represents 1.29V)
  */ 
-#define NOISE_TH        255
-#define SMOKE_TH        255
+#define NOISE_TH        50
+#define SMOKE_TH        100
 #define GAS_TH          60
 #define LIGHT_TH        80
 #define PRESSURE_TH     80
@@ -54,7 +54,7 @@ void AP_loop(uint8_t alert){
     if(0 < alert){
         char buffer[9];
         sprintf(&buffer[0], BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY(alert));
-        Serial.print(buffer);    
+        Serial.println(buffer);    
     }else{
         Serial.println(alert); //debug alert
     }//if(0 < alert)
