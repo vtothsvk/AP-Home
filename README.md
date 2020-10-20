@@ -78,7 +78,7 @@ Sensor threshold configuration is handled by the **_TH** directives in **AP-Home
 
 ## Debugging
 
-AP-Nurse Home unit debugging is handled via UART bus connected to the ESP8266 NodeMCU devboard USB port.
+AP-Nurse Home unit debugging is handled via a UART bus connected to the ESP8266 NodeMCU devboard USB port.
 
 **1.** When plugged in to your computer, connect to the board **Serial port** using a **serial monitor terminal** of your choice (eg. HTerm, TeraTerm or the Arduino IDE Serial Monitor).
 
