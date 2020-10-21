@@ -240,7 +240,52 @@ This command "pushes" all your locall changes to their tracked remote repo.
 
 In case of developing a new feature, a bug fix or any other shinanigans we follow the workflow shown below.
 
-![Image of Git Workflow](https://i.ibb.co/KDhzhCn/Git-Workflow.png)
+![Image of Git Workflow](https://i.ibb.co/hcVhWCZ/Git-Workflow.png)
+
+eg.
+
+Let's create a rudimentary feature that makes the AP-node print out a line in a serial terminal.
+
+**1.** Clone/pull 
+
+Clone the repo or pull if u just need to update the repo (It is essential to have ur local repo up to date with the remote one
+because u can break older commits with your push)
+
+```
+C:\Users\epic_\mySuperDuperProject\AP-Home> git pull
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 6 (delta 2), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (6/6), 5.29 KiB | 285.00 KiB/s, done.
+From https://github.com/vtothsvk/AP-Home
+   cc33435..f2a1444  main       -> origin/main
+Already up to date.
+
+C:\Users\epic_\mySuperDuperProject\AP-Home>
+```
+
+**2.** Branch off and check out
+
+Create your local branch and check out to it
+
+```
+C:\Users\epic_\mySuperDuperProject\AP-Home> git branch newFeatureTest
+
+C:\Users\epic_\mySuperDuperProject\AP-Home> git checkout newFeatureTest
+Switched to branch 'newFeatureTest'
+
+C:\Users\epic_\mySuperDuperProject\AP-Home>
+```
+
+(alternatively u can carry out both steps in one command by using **git checkout -b [newBranchName]**)
+
+**3.** Edit the code
+
+**4.** Push
+
+Push your branch to the remote repo using the **git push** command adding 
+
 
 ## Programming
 
