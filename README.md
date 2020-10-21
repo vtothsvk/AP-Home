@@ -136,7 +136,7 @@ C:\Users\epic_\mySuperDuperProject\AP-Home>
 Wanna change the code but fear screwing up the programme? Git lets u create a **branch** of your code that u can edit independently of the
 original source code.
 
-* Creating a branch
+### Creating a branch
 
 ```
 *inside a git repo
@@ -198,6 +198,39 @@ C:\Users\epic_\mySuperDuperProject\AP-Home>
 ```
 
 Noice!
+
+### "Saving" progress on your current branch
+
+U can **"save"** your progress to the current branch by the **git commit** command. First tho, u have to **stage**
+all of your changes by the **git add** command.
+
+* git add
+
+```
+*inside a git repo
+git add .
+```
+
+This command stages all changes to all files inside a repo
+
+```
+*inside a git repo
+git commit --all -m "Your commit message"
+```
+
+This command commits all staged changes with a **commit message**
+A commit message is a way of communicating what changed in the current commit eg. "Fixed incorrect pin initialisation".
+
+### "Uploading" changes
+
+To **"upload"** any local repo changes the **git push** command is used. (All your changes has to be locally commited first!)
+
+```
+*inside a locally cahced remote repo
+git push
+```
+
+This command "pushes" all your locall changes to their tracked remote repo.
 
 ## Programming
 
