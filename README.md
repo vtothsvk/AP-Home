@@ -33,6 +33,15 @@ Ideally u can set up Arduino core projet support within **Visual Studio Code** o
 * https://maker.pro/arduino/tutorial/how-to-use-visual-studio-code-for-arduino (VSCode tutorial)
 * https://www.eclipse.org/community/eclipse_newsletter/2017/april/article4.php (Eclipse tutorial)
 
+### Git BASH
+
+For convenient and fast code update and sharing **Git BASH** is recommended
+
+* https://git-scm.com/download/win (Windows)
+* https://git-scm.com/download/linux (Linux)
+
+#### Handling a git repo
+
 ## Programming
 
 To programme the app open the Arduino core project **AP-Home.ino**
