@@ -3,7 +3,6 @@
 #include "ClickButton.h"
 
 void trigger(bool &state);
-void pulse();
 
 //uncommenting the following line enables debug printout
 //#define _TRIGLOOP
@@ -14,6 +13,7 @@ static bool state = true;
 //#define _TECONTROL
 #ifdef _TECONTROL
 #define pWidth  100
+void pulse();
 #endif
 
 void setup(){
@@ -57,8 +57,10 @@ void trigger(bool &state){
     state = !state;
 }//trigger
 
+#ifdef _TECONTROL
 void pulse(){
     digitalWrite(TE, LOW);
     delay(pWidth);
     digitalWrite(TE, HIGH);
 }//pulse
+#endif
