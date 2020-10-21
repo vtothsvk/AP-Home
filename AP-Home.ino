@@ -13,10 +13,12 @@ void setup(){
     //encoder pin init
     pinMode(ENCODER_PIN, OUTPUT);
     pinMode(ENCODER_PIN2, OUTPUT);
+    pinMode(TE, OUTPUT);
 
     //encoder pin log level setup
     digitalWrite(ENCODER_PIN, HIGH);
     digitalWrite(ENCODER_PIN2, HIGH);
+    digitalWrite(TE, LOW);
 
     //serial com setup
     Serial.begin(115200);
@@ -34,9 +36,15 @@ void trigger(bool &state){
     if(state){
         digitalWrite(ENCODER_PIN, LOW);
         digitalWrite(ENCODER_PIN2, LOW);
+        digitalWrite(TE, LOW);
+//        delay(pWidth);
+//        digitalWrite(TE, HIGH);        
     }else{
         digitalWrite(ENCODER_PIN, HIGH);
         digitalWrite(ENCODER_PIN2, HIGH);
+        digitalWrite(TE, LOW);
+//        delay(pWidth);
+//        digitalWrite(TE, HIGH);        
     }//if(state)
 
     state = !state;
