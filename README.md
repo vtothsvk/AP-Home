@@ -64,6 +64,15 @@ C:Users\[yourUsername]\MySuperDuperProject>
 By **cloning** a git repository u locally cache its content to your machine creating a local repository that **tracks** the remote repository u cloned it from.
 This allows you to make changes locally and then **push** them online to the remote repo or **pull** any changes from the remote repo to your local one using a single command instead of downloading unziping, copy-pasting and eventually getting lost :D .
 
+Cloning is done by the git clone command:
+
+```
+*inside the folder u wanna clone the repo to
+git clone [yourRemoteRepoLink]
+```
+
+eg.
+
 ```
 C:Users\[yourUsername]\MySuperDuperProject> git clone https://github.com/vtothsvk/AP-Home.git
 Cloning into 'AP-Home'...
@@ -96,6 +105,12 @@ A new version of the source code is online and dont want to go to all the hassle
 Behold the **pull** command
 
 ```
+*inside your cloned local repo
+git pull
+```
+eg.
+
+```
 C:\Users\epic_\mySuperDuperProject\AP-Home> git pull
 
 remote: Enumerating objects: 9, done.
@@ -124,6 +139,7 @@ original source code.
 * Creating a branch
 
 ```
+*inside a git repo
 git branch [yourBranchName]
 ```
 
@@ -132,6 +148,7 @@ git branch [yourBranchName]
 Now that u have created a branch u have to "check out" to it (by checking out u basically select the branch u are working on)
 
 ```
+*inside a git repo
 git checkout [yourBranchName]
 ```
 
@@ -140,6 +157,7 @@ git checkout [yourBranchName]
 Not sure about the branch u are working on or wanna check out but forgot the branch name?
 
 ```
+*inside a git repo
 git branch -a
 ```
 
