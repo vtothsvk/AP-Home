@@ -3,11 +3,18 @@
 #include "ClickButton.h"
 
 void trigger(bool &state);
+void pulse();
 
-//uncommenting the next line enables debug printout
+//uncommenting the following line enables debug printout
 //#define _TRIGLOOP
 #define loopDelay   200
 static bool state = true;
+
+//uncommenting the following line enables encoder TE control
+//#define _TECONTROL
+#ifdef _TECONTROL
+#define pWidth  100
+#endif
 
 void setup(){
     //encoder pin init
@@ -36,16 +43,22 @@ void trigger(bool &state){
     if(state){
         digitalWrite(ENCODER_PIN, LOW);
         digitalWrite(ENCODER_PIN2, LOW);
-        digitalWrite(TE, LOW);
-//        delay(pWidth);
-//        digitalWrite(TE, HIGH);        
+        #ifdef _TECONTROL
+        pulse();
+        #endif
     }else{
         digitalWrite(ENCODER_PIN, HIGH);
         digitalWrite(ENCODER_PIN2, HIGH);
-        digitalWrite(TE, LOW);
-//        delay(pWidth);
-//        digitalWrite(TE, HIGH);        
+        #ifdef _TECONTROL
+        pulse();
+        #endif 
     }//if(state)
 
     state = !state;
 }//trigger
+
+void pulse(){
+    digitalWrite(TE, LOW);
+    delay(pWidth);
+    digitalWrite(TE, HIGH);
+}//pulse
