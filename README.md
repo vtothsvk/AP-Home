@@ -180,15 +180,15 @@ C:\Users\epic_\mySuperDuperProject\AP-Home>git branch -a
 C:\Users\epic_\mySuperDuperProject\AP-Home>
 ```
 
-Hmm, curious, it seems only the "main" branch is in my local repo. Truth is Git caches all the remote branches locally, but
-does not display them util I check out to them. So I see the remote repo has a branch "pairTest", that means I should have a
+Hmm, curious, it seems only the "main" branch is in my local repo. Truth is however, that Git caches all the remote branches locally, but
+does not display them util I check out to them. So I see the remote repo has a branch "pairTest", that means I should have an
 equally named branch in my local repo as well. Let's try it out...
 
+```
 C:\Users\epic_\mySuperDuperProject\AP-Home>git checkout pairTest
 Switched to a new branch 'pairTest'
 Branch 'pairTest' set up to track remote branch 'pairTest' from 'origin'.
 
-```
 C:\Users\epic_\mySuperDuperProject\AP-Home>git branch -a
   main
 * pairTest
@@ -233,6 +233,114 @@ git push
 ```
 
 This command "pushes" all your locall changes to their tracked remote repo.
+
+## Git repo workflow
+
+**We do not make direct changes to the "main" branch!!!**
+
+In case of developing a new feature, a bug fix or any other shinanigans we follow the workflow shown below.
+
+![Image of Git Workflow](https://i.ibb.co/hcVhWCZ/Git-Workflow.png)
+
+eg.
+
+Let's create a rudimentary feature that makes the AP-node print out a line in a serial terminal.
+
+**1. Clone/pull**
+
+Clone the repo or pull if u just need to update the repo (It is essential to have ur local repo up to date with the remote one
+because u can break older commits with your push)
+
+```
+C:\Users\epic_\mySuperDuperProject\AP-Home> git pull
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 6 (delta 2), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (6/6), 5.29 KiB | 285.00 KiB/s, done.
+From https://github.com/vtothsvk/AP-Home
+   cc33435..f2a1444  main       -> origin/main
+Already up to date.
+
+C:\Users\epic_\mySuperDuperProject\AP-Home>
+```
+
+**2. Branch off and check out**
+
+Create your local branch and check out to it
+
+```
+C:\Users\epic_\mySuperDuperProject\AP-Home> git branch newFeatureTest
+
+C:\Users\epic_\mySuperDuperProject\AP-Home> git checkout newFeatureTest
+Switched to branch 'newFeatureTest'
+
+C:\Users\epic_\mySuperDuperProject\AP-Home>
+```
+
+(alternatively u can carry out both steps in one command by using **git checkout -b [newBranchName]**)
+
+**3. Edit the code**
+
+**4. Commit your changes**
+
+```
+C:\Users\epic_\mySuperDuperProject\AP-Home> git commit --all -m "added a new booting message"
+[newFeatureTest 2139e4a] added a new booting message
+ 1 file changed, 2 insertions(+)
+
+C:\Users\epic_\mySuperDuperProject\AP-Home>
+```
+
+**5. Push**
+
+Push your branch to the remote repo using the **git push** command adding **--set-upstream origin newFeatureTest**
+
+```
+C:\Users\epic_\mySuperDuperProject\AP-Home> git push --set-upstream origin newFeatureTest
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 12 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 351 bytes | 351.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+remote:
+remote: Create a pull request for 'newFeatureTest' on GitHub by visiting:
+remote:      https://github.com/vtothsvk/AP-Home/pull/new/newFeatureTest
+remote:
+To https://github.com/vtothsvk/AP-Home.git
+ * [new branch]      newFeatureTest -> newFeatureTest
+Branch 'newFeatureTest' set up to track remote branch 'newFeatureTest' from 'origin'.
+
+C:\Users\epic_\mySuperDuperProject\AP-Home>
+```
+
+**6. Create a pull request**
+
+1. Openinng the repo in github navigate to the **Pull requests** tab
+
+![Image of Pull request 1](https://i.ibb.co/x2Fj9wn/pull-Req-Tab.png)
+
+2. Create a **new pull request**
+
+![Image of Pull request 2](https://i.ibb.co/7GgJtQk/newPReq.png)
+
+3. Select the branch u want to merge into the "main* branch
+(In this case its the "newFeatureTest" branch)
+
+![Image of Pull request 3](https://i.ibb.co/9WWMjYt/select-Branch.png)
+
+4. Check changes made in the selected branch and then continue as shown in the image
+
+![Image of Pull request 4](https://i.ibb.co/xLLqtrM/compare.png)
+
+5. Describe your pull request and finally create your pull request
+
+![Image of Pull request 5](https://i.ibb.co/vPnsPMp/final.png)
+
+**Congrats!! the rest of the work is my business :P**
+
 
 ## Programming
 
