@@ -176,6 +176,8 @@ C:\Users\epic_\mySuperDuperProject\AP-Home>git branch -a
   remotes/origin/HEAD -> origin/main
   remotes/origin/main
   remotes/origin/pairTest
+  
+C:\Users\epic_\mySuperDuperProject\AP-Home>
 ```
 
 Hmm, curious, it seems only the "main" branch is in my local repo. Truth is Git caches all the remote branches locally, but
