@@ -93,6 +93,9 @@ Now u can start managing the git repo
 A new version of the source code is online and dont want to go to all the hassle of manually updating all the relevant files?
 Behold the **pull** command
 
+```
+C:Users\[yourUsername]\MySuperDuperProject\AP-Home> git pull
+```
 
 ## Programming
 
