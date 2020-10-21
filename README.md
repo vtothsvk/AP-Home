@@ -49,6 +49,8 @@ Git GUI is handled via cmd in Windows and via a terminal in Linux
 
 **1.** Create a directory for the project and navigate to your new directory
 
+In Windows cmd:
+
 ```
 C:Users\[yourUsername]> md MySuperDuperProject
 
@@ -94,8 +96,90 @@ A new version of the source code is online and dont want to go to all the hassle
 Behold the **pull** command
 
 ```
-C:Users\[yourUsername]\MySuperDuperProject\AP-Home> git pull
+C:\Users\epic_\mySuperDuperProject\AP-Home> git pull
+
+remote: Enumerating objects: 9, done.
+remote: Counting objects: 100% (9/9), done.
+remote: Compressing objects: 100% (5/5), done.
+remote: Total 5 (delta 3), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (5/5), 1.27 KiB | 72.00 KiB/s, done.
+From https://github.com/vtothsvk/AP-Home
+   4b606a7..e1124ed  main       -> origin/main
+   8fef733..9a07a15  pairTest   -> origin/pairTest
+Updating 4b606a7..e1124ed
+Fast-forward
+ README.md | 64 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 64 insertions(+)
+ 
+C:\Users\epic_\mySuperDuperProject\AP-Home>
 ```
+
+**Done! your local repo is up to date ^^** 
+
+#### Branching
+
+Wanna change the code but fear screwing up the programme? Git lets u create a **branch** of your code that u can edit independently of the
+original source code.
+
+* Creating a branch
+
+```
+git branch [yourBranchName]
+```
+
+* "Switching" branches
+
+Now that u have created a branch u have to "check out" to it (by checking out u basically select the branch u are working on)
+
+```
+git checkout [yourBranchName]
+```
+
+* Listing all branches
+
+Not sure about the branch u are working on or wanna check out but forgot the branch name?
+
+```
+git branch -a
+```
+
+The command prints out all available branches and higligths the one u are curenntly check out to.
+
+* Checking out to a local branch of a remote repo
+
+Git clone has a mysterious way of displaying locally cached branches lets see an example.
+
+I cloned the AP-Home repo that has 2 branches "main" and "pairTest". Let's check which branches are chached locally.
+
+```
+C:\Users\epic_\mySuperDuperProject\AP-Home>git branch -a
+
+* main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+  remotes/origin/pairTest
+```
+
+Hmm, curious, it seems only the "main" branch is in my local repo. Truth is Git caches all the remote branches locally, but
+does not display them util I check out to them. So I see the remote repo has a branch "pairTest", that means I should have a
+equally named branch in my local repo as well. Let's try it out...
+
+C:\Users\epic_\mySuperDuperProject\AP-Home>git checkout pairTest
+Switched to a new branch 'pairTest'
+Branch 'pairTest' set up to track remote branch 'pairTest' from 'origin'.
+
+```
+C:\Users\epic_\mySuperDuperProject\AP-Home>git branch -a
+  main
+* pairTest
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/main
+  remotes/origin/pairTest
+
+C:\Users\epic_\mySuperDuperProject\AP-Home>
+```
+
+Noice!
 
 ## Programming
 
