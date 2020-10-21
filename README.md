@@ -242,6 +242,8 @@ In case of developing a new feature, a bug fix or any other shinanigans we follo
 
 ![Image of Git Workflow](https://i.ibb.co/KDhzhCn/Git-Workflow.png)
 
+pull request is
+
 ## Programming
 
 To programme the app open the Arduino core project **AP-Home.ino**
