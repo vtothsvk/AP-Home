@@ -5,7 +5,7 @@
 void trigger(bool &state);
 
 //uncommenting the next line enables debug printout
-//#define _TRIGLOOP
+#define _TRIGLOOP
 #define loopDelay   200
 static bool state = true;
 
