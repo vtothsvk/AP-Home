@@ -33,6 +33,70 @@ Ideally u can set up Arduino core projet support within **Visual Studio Code** o
 * https://maker.pro/arduino/tutorial/how-to-use-visual-studio-code-for-arduino (VSCode tutorial)
 * https://www.eclipse.org/community/eclipse_newsletter/2017/april/article4.php (Eclipse tutorial)
 
+## Git BASH
+
+For convenient and fast code update and sharing using the Git supply chain manager GUI **Git BASH** is recommended.
+
+* https://git-scm.com/download/win (Windows)
+* https://git-scm.com/download/linux (Linux)
+
+### Handling a git repo
+
+#### Cloning a repo
+
+Git GUI is handled via cmd in Windows and via a terminal in Linux
+(
+
+**1.** Create a directory for the project and navigate to your new directory
+
+```
+C:Users\[yourUsername]> md MySuperDuperProject
+
+C:Users\[yourUsername]> cd MySuperDuperProject
+
+C:Users\[yourUsername]\MySuperDuperProject>
+```
+
+**2.** Clone the git repo
+
+By **cloning** a git repository u locally cache its content to your machine creating a local repository that **tracks** the remote repository u cloned it from.
+This allows you to make changes locally and then **push** them online to the remote repo or **pull** any changes from the remote repo to your local one using a single command instead of downloading unziping, copy-pasting and eventually getting lost :D .
+
+```
+C:Users\[yourUsername]\MySuperDuperProject> git clone https://github.com/vtothsvk/AP-Home.git
+Cloning into 'AP-Home'...
+
+remote: Enumerating objects: 217, done.
+remote: Counting objects: 100% (217/217), done.
+remote: Compressing objects: 100% (191/191), done.
+remote: Total 217 (delta 129), reused 54 (delta 25), pack-reused 0R
+Receiving objects: 100% (217/217), 58.08 KiB | 914.00 KiB/s, done.
+Resolving deltas: 100% (129/129), done.
+
+C:Users\[yourUsername]\MySuperDuperProject>
+```
+
+**3.**  Open your cloned repo and make yourself at home
+
+```
+C:Users\[yourUsername]\MySuperDuperProject> cd AP-Home
+
+C:Users\[yourUsername]\MySuperDuperProject\AP-Home> 
+```
+
+**Voilà all set and done ^^**
+
+Now u can start managing the git repo
+
+#### Updating your local repo
+
+A new version of the source code is online and dont want to go to all the hassle of manually updating all the relevant files?
+Behold the **pull** command
+
+```
+C:Users\[yourUsername]\MySuperDuperProject\AP-Home> git pull
+```
+
 ## Programming
 
 To programme the app open the Arduino core project **AP-Home.ino**
