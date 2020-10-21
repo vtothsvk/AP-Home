@@ -180,7 +180,7 @@ C:\Users\epic_\mySuperDuperProject\AP-Home>git branch -a
 C:\Users\epic_\mySuperDuperProject\AP-Home>
 ```
 
-Hmm, curious, it seems only the "main" branch is in my local repo. Truth is Git caches all the remote branches locally, but
+Hmm, curious, it seems only the "main" branch is in my local repo. Truth is however, that Git caches all the remote branches locally, but
 does not display them util I check out to them. So I see the remote repo has a branch "pairTest", that means I should have a
 equally named branch in my local repo as well. Let's try it out...
 
