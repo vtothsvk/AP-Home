@@ -238,7 +238,7 @@ This command "pushes" all your locall changes to their tracked remote repo.
 
 **We do not make direct changes to the "main" branch!!!**
 
-In case of developing new feature, bug fux or any other shinanigans we follow the workflow shown below.
+In case of developing a new feature, a bug fix or any other shinanigans we follow the workflow shown below.
 
 ![Image of Git Workflow](https://i.ibb.co/KDhzhCn/Git-Workflow.png)
 
