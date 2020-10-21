@@ -184,11 +184,11 @@ Hmm, curious, it seems only the "main" branch is in my local repo. Truth is howe
 does not display them util I check out to them. So I see the remote repo has a branch "pairTest", that means I should have an
 equally named branch in my local repo as well. Let's try it out...
 
+```
 C:\Users\epic_\mySuperDuperProject\AP-Home>git checkout pairTest
 Switched to a new branch 'pairTest'
 Branch 'pairTest' set up to track remote branch 'pairTest' from 'origin'.
 
-```
 C:\Users\epic_\mySuperDuperProject\AP-Home>git branch -a
   main
 * pairTest
