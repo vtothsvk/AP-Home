@@ -40,9 +40,9 @@ For convenient and fast code update and sharing using the Git supply chain manag
 * https://git-scm.com/download/win (Windows)
 * https://git-scm.com/download/linux (Linux)
 
-### Handling a git repo
+## Handling a git repo
 
-#### Cloning a repo
+### Cloning a repo
 
 Git GUI is handled via cmd in Windows and via a terminal in Linux
 (
@@ -90,7 +90,7 @@ C:Users\[yourUsername]\MySuperDuperProject\AP-Home>
 
 Now u can start managing the git repo
 
-#### Updating your local repo
+### Updating your local repo
 
 A new version of the source code is online and dont want to go to all the hassle of manually updating all the relevant files?
 Behold the **pull** command
@@ -116,7 +116,7 @@ C:\Users\epic_\mySuperDuperProject\AP-Home>
 
 **Done! your local repo is up to date ^^** 
 
-#### Branching
+### Branching
 
 Wanna change the code but fear screwing up the programme? Git lets u create a **branch** of your code that u can edit independently of the
 original source code.
@@ -127,7 +127,7 @@ original source code.
 git branch [yourBranchName]
 ```
 
-* "Switching" branches
+### "Switching" branches
 
 Now that u have created a branch u have to "check out" to it (by checking out u basically select the branch u are working on)
 
@@ -135,7 +135,7 @@ Now that u have created a branch u have to "check out" to it (by checking out u 
 git checkout [yourBranchName]
 ```
 
-* Listing all branches
+### Listing all branches
 
 Not sure about the branch u are working on or wanna check out but forgot the branch name?
 
@@ -145,7 +145,7 @@ git branch -a
 
 The command prints out all available branches and higligths the one u are curenntly check out to.
 
-* Checking out to a local branch of a remote repo
+### Checking out to a local branch of a remote repo
 
 Git clone has a mysterious way of displaying locally cached branches lets see an example.
 
