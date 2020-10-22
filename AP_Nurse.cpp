@@ -82,7 +82,8 @@ status_t AP_Nurse::checkMotion(){
 }
 
 status_t AP_Nurse::checkNoise(){
-    if(analogRead(NOISE_PIN) >= this -> ap_th.noiseTH){
+    this -> ap_node.lastNoise = analogRead(NOISE_PIN);
+    if(this -> ap_node.lastNoise >= this -> ap_th.noiseTH){
         this -> ap_node.lastAlert |= NOISE_ALERT;
         return NOISE_ALERT;
     }
