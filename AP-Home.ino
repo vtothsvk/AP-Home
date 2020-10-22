@@ -32,7 +32,7 @@ int Alert(bool enable);
 void pulse();
 
 AP_Nurse_Universal ap_node(NOISE_TH, SMOKE_TH, GAS_TH, LIGHT_TH, PRESSURE_TH, TEMP_TH);//ap nurse control interface
-ClickButton button(BUTTON_PIN, LOW, CLICKBTN_PULLUP);//button handler
+ClickButton button(BUTTON_PIN, HIGH, CLICKBTN_PULLDOWN);//button handler
 volatile bool muted = false;
 volatile bool wasAlert = false;
 volatile long muteStart = 0;
