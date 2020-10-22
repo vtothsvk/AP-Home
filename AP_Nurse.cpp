@@ -69,10 +69,13 @@ void AP_Nurse::printData(){
     Serial.println(this -> getLastLight());
     Serial.print("Pressure:  ");
     Serial.println(this -> getLastPressure());
+    Serial.print("Button:    ");
+    Serial.println(digitalRead(BUTTON_PIN));
 }
 
 status_t AP_Nurse::checkMotion(){
-    if(digitalRead(PIR_PIN)){
+    this -> ap_node.lastMotion = digitalRead(PIR_PIN);
+    if(this -> ap_node.lastMotion){
         this -> ap_node.lastAlert |= MOTION_ALERT;
         return MOTION_ALERT;
     }
