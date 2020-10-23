@@ -5,14 +5,14 @@
 void trigger(bool &state);
 
 //uncommenting the following line enables debug printout
-//#define _TRIGLOOP
-#define loopDelay   200
+#define _TRIGLOOP
+#define loopDelay   2000
 static bool state = true;
 
 //uncommenting the following line enables encoder TE control
-//#define _TECONTROL
+#define _TECONTROL
 #ifdef _TECONTROL
-#define pWidth  100
+#define pWidth  200
 void pulse();
 #endif
 
@@ -30,6 +30,8 @@ void setup(){
     //serial com setup
     Serial.begin(115200);
     Serial.println("AP Nurse Universal V 1.0 Booted Succesfully ^^");
+    delay(10000);
+    Serial.println("Starting TrigLoop");
 }//setup
 
 void loop(){
