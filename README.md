@@ -301,7 +301,7 @@ C:\Users\epic_\mySuperDuperProject\AP-Home>
 
 **5. Push**
 
-Push your branch to the remote repo using the **git push** command adding **--set-upstream origin newFeatureTest**
+Push your branch to the remote repo using the **git push** command adding **--set-upstream origin [newBranchName]**
 
 ```
 C:\Users\epic_\mySuperDuperProject\AP-Home> git push --set-upstream origin newFeatureTest
