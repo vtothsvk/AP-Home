@@ -3,7 +3,7 @@
 
 /** Custom print pattern
  * 
- *  @note 8c for 8b of an uint8_t
+ *  @note 8c for each b of a uint8_t
  */ 
 #define BYTE_TO_BINARY_PATTERN "%c%c%c%c%c%c%c%c"
 
