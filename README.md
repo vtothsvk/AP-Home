@@ -44,8 +44,7 @@ For convenient and fast code update and sharing using the Git supply chain manag
 
 ### Cloning a repo
 
-Git GUI is handled via cmd in Windows and via a terminal in Linux
-(
+Git GUI is handled via cmd in Windows and via a terminal in Linux.
 
 **1.** Create a directory for the project and navigate to your new directory
 
@@ -234,13 +233,21 @@ git push
 
 This command "pushes" all your locall changes to their tracked remote repo.
 
+## Git visual GUI GitKraken
+
+U can, alternatively, use the visual GUI for Git SCM - GitKraken
+
+https://www.gitkraken.com/download
+
+![Image of GitKraken](https://i.ibb.co/hFpbYmR/Git-Kraken.png)
+
 ## Git repo workflow
 
 **We do not make direct changes to the "main" branch!!!**
 
 In case of developing a new feature, a bug fix or any other shinanigans we follow the workflow shown below.
 
-![Image of Git Workflow](https://i.ibb.co/hcVhWCZ/Git-Workflow.png)
+![Image of Git Workflow](https://i.ibb.co/hyJTyBd/Git-Workflow.png)
 
 eg.
 
