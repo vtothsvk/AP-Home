@@ -247,7 +247,7 @@ https://www.gitkraken.com/download
 
 In case of developing a new feature, a bug fix or any other shinanigans we follow the workflow shown below.
 
-![Image of Git Workflow](https://i.ibb.co/hyJTyBd/Git-Workflow.png)
+![Image of Git Workflow](https://i.ibb.co/vZ2ZxC5/Git-Workflow.png)
 
 eg.
 
