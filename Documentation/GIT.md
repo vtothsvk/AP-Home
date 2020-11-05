@@ -1,6 +1,6 @@
 # Git supply chain management
 
-## Contents:
+## Content
 
 1. [Git BASH](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/GIT.md#git-bash)
 2. [Handling a git repo](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/GIT.md#handling-a-git-repo)
