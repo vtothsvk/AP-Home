@@ -28,7 +28,7 @@ If applicable, add console logs or other types of debug information (screenshots
  - OS: [e.g. Windows 10]
  - IDE used and its version (eg. VSCode 1.48.2 with Arduino IDE 1.8.9)
  - Compiler toolchain and version (GCC - xtensa-esp32 v1.22.0)
- - Hash of the commit used ([c655abd](https://github.com/zephyrproject-rtos/zephyr/commit/0d4dca10b2ac156b598f96b4dadb44ac7001380b) )
+ - Hash of the commit used or at least the branch/tag ([c655abd](https://github.com/zephyrproject-rtos/zephyr/commit/0d4dca10b2ac156b598f96b4dadb44ac7001380b) )
 
 **Additional context**
 Add any other context about the problem here.
