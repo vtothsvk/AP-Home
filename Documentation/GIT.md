@@ -360,7 +360,7 @@ Feel free to browse through all the open a close issues any time ur in need of h
 ## Git project management
 
 Git issues have more uses than at first glance may seem. If understand as tasks, they can be organised into **projects**. 
-Github supports various project management (for example [Kanban](https://en.wikipedia.org/wiki/Kanban_(development))) by which git issues can be handled.
+Github supports various project management methods (for example [Kanban](https://en.wikipedia.org/wiki/Kanban_(development))) by which git issues can be handled.
 Check out the [projects](https://github.com/vtothsvk/AP-Home/projects) tab for more info.
 
 ## Formatting text - Markdown
