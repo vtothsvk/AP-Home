@@ -6,7 +6,7 @@
 2. [Handling a git repo](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/GIT.md#handling-a-git-repo)
 3. [Git visual GUI](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/GIT.md#git-visual-gui-gitkraken)
 4. [Git repo workflow](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/GIT.md#git-repo-workflow)
-5. [Formatting text - Markdown]()
+5. [Formatting text - Markdown](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/GIT.md#formatting-text---markdown)
 
 ## Git BASH
 
