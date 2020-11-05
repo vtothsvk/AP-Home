@@ -354,5 +354,6 @@ Let's crete a **bug report** issue for a reference
 
 Feel free to browse through all the open a close issues any time ur in need of help or inspirtion creating an issue.
 
+## Markdown
 Comments, issues and virtually every other text on github uses [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) formating and syntax. 
-[Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
+* [Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
