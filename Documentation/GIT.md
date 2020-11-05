@@ -322,3 +322,16 @@ C:\Users\epic_\mySuperDuperProject\AP-Home>
 
 **Congrats!! the rest of the work is my business :P**
 
+# Git Issue
+
+Encountered a bug or u have an idea u want to contribute to the project? Create **Git Issue**
+
+# Creating an issue
+
+Let's crete a **bug report** issue for a reference
+
+1. U navigate to the **Issues** tab in github
+
+2. Create **New issue**
+
+3. Select the **Bug report** template
