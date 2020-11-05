@@ -1,3 +1,12 @@
+# Git supply chain management
+
+## Contents:
+
+1. [Git BASH](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/GIT.md#git-bash)
+2. [Handling a git repo](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/GIT.md#handling-a-git-repo)
+3. [Git visual GUI](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/GIT.md#git-visual-gui-gitkraken)
+4. [Git repo workflow](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/GIT.md#git-repo-workflow)
+
 ## Git BASH
 
 For convenient and fast code update and sharing using the Git supply chain manager GUI **Git BASH** is recommended.
