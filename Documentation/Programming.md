@@ -3,7 +3,7 @@
 ## Content
 
 1. [IDE setup](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/Programming.md#ide-setup)
-2. [Programming](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/Programming.md#Programming)
+2. [Programming](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/Programming.md#programming-1)
 3. [Building](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/Programming.md#Building)
 
 ## IDE setup
