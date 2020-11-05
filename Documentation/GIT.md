@@ -332,6 +332,27 @@ Let's crete a **bug report** issue for a reference
 
 1. U navigate to the **Issues** tab in github
 
+![Iamge of Issues tab](https://i.ibb.co/WGk983S/issue-tab.png)
+
 2. Create **New issue**
 
+![Image of New Issue](https://i.ibb.co/fGcXVxm/new-issue.png)
+
 3. Select the **Bug report** template
+
+![Image of Template selection](https://i.ibb.co/ZH7DZVh/bug-repotr-select.png)
+
+4. Complete your issue
+
+![Image of Complete your issue](https://i.ibb.co/HTsCb25/issue-submit.png)
+
+**Voilà all set and done ^^** u can now see your issue under the open issues.
+
+![Image of Open issues](https://i.ibb.co/mcgWs8N/Open-issues.png)
+
+![Image of Your new issue](https://i.ibb.co/dc8YhQs/issue-created.png)
+
+Feel free to browse through all the open a close issues any time ur in need of help or inspirtion creating an issue.
+
+Comments, issues and virtually every other text on github uses [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) formating and syntax. 
+[Mastering Markdown](https://guides.github.com/features/mastering-markdown/)
