@@ -7,7 +7,8 @@
 3. [Git visual GUI](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/GIT.md#git-visual-gui-gitkraken)
 4. [Git repo workflow](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/GIT.md#git-repo-workflow)
 5. [Git Issues](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/GIT.md#Git-Issues)
-6. [Formatting text - Markdown](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/GIT.md#formatting-text---markdown)
+6. [Git project management](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/GIT.md#Git-project-management)
+7. [Formatting text - Markdown](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/GIT.md#formatting-text---markdown)
 
 ## Git BASH
 
@@ -324,11 +325,11 @@ C:\Users\epic_\mySuperDuperProject\AP-Home>
 
 **Congrats!! the rest of the work is my business :P**
 
-# Git Issues
+## Git Issues
 
 Encountered a bug or u have an idea u want to contribute to the project? Create **Git Issue**
 
-# Creating an issue
+### Creating an issue
 
 Let's crete a **bug report** issue for a reference
 
@@ -355,6 +356,12 @@ Let's crete a **bug report** issue for a reference
 ![Image of Your new issue](https://i.ibb.co/dc8YhQs/issue-created.png)
 
 Feel free to browse through all the open a close issues any time ur in need of help or inspirtion creating an issue.
+
+## Git project management
+
+Git issues have more uses than at first glance may seem. If understand as tasks, they can be organised into **projects**. 
+Github supports various project management (for example [Kanban](https://en.wikipedia.org/wiki/Kanban_(development)) by which git issues can be handled.
+Check out the [projects](https://github.com/vtothsvk/AP-Home/projects) tab for more info.
 
 ## Formatting text - Markdown
 Comments, issues and virtually every other text on github uses [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) formating and syntax. 
