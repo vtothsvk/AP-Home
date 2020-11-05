@@ -26,9 +26,9 @@ If applicable, add console logs or other types of debug information (screenshots
 
 **Evironment:**
  - OS: [e.g. Windows 10]
- - IDE used and its version (eg. VSCode 1.48.2 with Arduino IDE 1.8.9)
- - Compiler toolchain and version (GCC - xtensa-esp32 v1.22.0)
- - Hash of the commit used or at least the branch/tag ([01d7c40](https://github.com/vtothsvk/AP-Home/commit/01d7c40c3d246cf4b00741955a6940bca525fcdd))
+ - IDE used and its version (e.g. VSCode 1.48.2 with Arduino IDE 1.8.9)
+ - Compiler toolchain and version (e.g. GCC - xtensa-esp32 v1.22.0)
+ - Hash of the commit used or at least the branch/tag (e.g. [01d7c40](https://github.com/vtothsvk/AP-Home/commit/01d7c40c3d246cf4b00741955a6940bca525fcdd))
 
 **Additional context**
 Add any other context about the problem here.
