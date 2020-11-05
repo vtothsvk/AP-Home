@@ -1,5 +1,11 @@
 # Programming
 
+## Content
+
+1. [IDE setup](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/Programming.md#ide-setup)
+2. [Programming](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/Programming.md#Programming)
+3. [Building](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/Programming.md#Building)
+
 ## IDE setup
 
 To programme, build and flash the app u'll need **Arduino IDE v 1.8.9** with the **ESP8266 package**
