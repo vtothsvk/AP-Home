@@ -2,6 +2,9 @@
 #include "AP_Nurse.h"
 #include "ClickButton.h"
 
+//uncommenting the next line disables PIR sensor update
+//#define _DISABLE_PIR
+
 //uncommenting next line enables buzzer
 //#define _BUZZER
 
