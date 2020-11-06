@@ -165,7 +165,9 @@ uint8_t AP_Nurse_Hallway::update(){
 /** AP_nurse_Universal methods definitions
  */
 uint8_t AP_Nurse_Universal::update(){
+    #ifndef _DISABLE_PIR
     this -> checkMotion();
+    #endif
     this -> checkNoise();
     //this -> checkTemperature();
     //this -> checkExtender();
