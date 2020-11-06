@@ -6,7 +6,9 @@ PCF8591 extender(0, false);
  */
 AP_Nurse::AP_Nurse(){
     //I/O init
+    #ifndef _DISABLE_PIR
     pinMode(PIR_PIN, INPUT);
+    #eindif
     pinMode(NOISE_PIN, INPUT);
     pinMode(DAY_NIGHT, INPUT);
     pinMode(TE, OUTPUT);
