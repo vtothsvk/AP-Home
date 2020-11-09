@@ -6,10 +6,14 @@ PCF8591 extender(0, false);
  */
 AP_Nurse::AP_Nurse(){
     //I/O init
-    #ifdef _PIR_ENABLE
+    #ifdef PIR_ENABLE
     pinMode(PIR_PIN, INPUT);
     #endif
+
+    #ifdef NOISE_ENABLE
     pinMode(NOISE_PIN, INPUT);
+    #endif
+
     pinMode(DAY_NIGHT, INPUT);
     pinMode(TE, OUTPUT);
     pinMode(ENCODER_PIN, OUTPUT);
@@ -59,20 +63,22 @@ uint8_t AP_Nurse::getLastPressure(){
 
 void AP_Nurse::printData(){
     Serial.println();
-    Serial.print("Motion:    ");
-    Serial.println(this -> getLastMotion());
-    Serial.print("Noise:     ");
-    Serial.println(this -> getLastNoise());
-    Serial.print("Smoke:     ");
-    Serial.println(this -> getLastSmoke());
-    Serial.print("Gas:       ");
-    Serial.println(this -> getLastGas());
-    Serial.print("Light:     ");
-    Serial.println(this -> getLastLight());
-    Serial.print("Pressure:  ");
-    Serial.println(this -> getLastPressure());
-    Serial.print("Button:    ");
-    Serial.println(digitalRead(BUTTON_PIN));
+
+    #ifdef PIR_ENABLE
+    Serial.printf("Motion:      %d\r\n", this -> getLastMotion());
+    #endif
+
+    #ifdef NOISE_ENABLE
+    Serial.printf("Noise:       %d\r\n", this -> getLastNoise());
+    #endif
+
+    #ifdef EXTENDER_ENABLE
+    Serial.printf("Smoke:       %d\r\n", this -> getLastSmoke());
+    Serial.printf("Gas:         %d\r\n", this -> getLastGas());
+    Serial.printf("Light:       %d\r\n", this -> getLastLight());
+    Serial.printf("Pressure:    %d\r\n", this -> getLastPressure());
+    #endif
+    Serial.printf("Button:      %d\r\n", digitalRead(BUTTON_PIN));
 }
 
 status_t AP_Nurse::checkMotion(){
@@ -167,16 +173,20 @@ uint8_t AP_Nurse_Hallway::update(){
 /** AP_nurse_Universal methods definitions
  */
 uint8_t AP_Nurse_Universal::update(){
-    #ifdef _PIR_ENABLE
+    #ifdef PIR_ENABLE
     this -> checkMotion();
     #endif
+
+    #ifdef NOISE_ENABLE
     this -> checkNoise();
-    //this -> checkTemperature();
-    //this -> checkExtender();
+    #endif
+
+    #ifdef EXTENDER_ENABLE
     if((millis() - this -> ap_node.lastEcheck) >= 5000){
         this -> checkExtender();
         this -> ap_node.lastEcheck = millis();
     }
+    #endif
 
     return this -> ap_node.lastAlert;
 }
