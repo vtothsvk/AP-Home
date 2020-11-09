@@ -26,7 +26,17 @@ Ideally u can set up Arduino core projet support within **Visual Studio Code** o
 
 To programme the app open the Arduino core project **AP-Home.ino**
 
-Sensor threshold configuration is handled by the **_TH** directives in **AP-Home.ino**:
+Sensor control (Enable/Disable) is handled by the `_ENABLE` directives in **Sensor_enable.h**
+
+```C++
+/** Sensor enable directives
+ * 
+ *  @note uncommenting any of the following results in disabling respective sensor reading
+ */
+#define _PIR_ENABLE
+```
+
+Sensor threshold configuration is handled by the `_TH` directives in **AP-Home.ino**:
 
 ```C++
 /** Threshold directives
