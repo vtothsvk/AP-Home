@@ -5,6 +5,7 @@ Custom FW of the AP-Nurse Home node based on the ESP8266 Arduino core.
 ## Files
 
 * **AP-Home.ino** - main app - Arduino core project
+* **Sensor_enable.h** - Sensor enable header - Contains sensor control directives
 * **AP_Nurse_Home_pinout.h** - board pinout
 * **AP_Nurse.h** - AP-Home controll interface header
 * **AP_Nurse_types.h** - important type, structure, macro and directive definitions
