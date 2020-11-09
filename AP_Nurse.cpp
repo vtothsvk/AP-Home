@@ -6,11 +6,7 @@ PCF8591 extender(0, false);
  */
 AP_Nurse::AP_Nurse(){
     //I/O init
-<<<<<<< HEAD
-    #ifndef _DISABLE_PIR
-=======
     #ifdef _PIR_ENABLE
->>>>>>> main
     pinMode(PIR_PIN, INPUT);
     #endif
     pinMode(NOISE_PIN, INPUT);
