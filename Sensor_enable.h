@@ -5,6 +5,8 @@
  * 
  *  @note uncommenting any of the following results in disabling respective sensor reading
  */
-#define _PIR_ENABLE
+#define PIR_ENABLE
+#define NOISE_ENABLE
+#define EXTENDER_ENABLE
 
 #endif
