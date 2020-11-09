@@ -5,6 +5,7 @@
 #include <Wire.h>
 #include "AP_Nurse_types.h"
 #include "AP_Nurse_Home_Pinout.h"
+#include "Sensor_enable.h"
 #include "PCF8591.h"
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BME280.h>
