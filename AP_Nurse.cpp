@@ -6,7 +6,11 @@ PCF8591 extender(0, false);
  */
 AP_Nurse::AP_Nurse(){
     //I/O init
+<<<<<<< HEAD
     #ifndef _DISABLE_PIR
+=======
+    #ifdef _PIR_ENABLE
+>>>>>>> main
     pinMode(PIR_PIN, INPUT);
     #endif
     pinMode(NOISE_PIN, INPUT);
@@ -196,7 +200,7 @@ uint8_t AP_Nurse_Hallway::update(){
 /** AP_nurse_Universal methods definitions
  */
 uint8_t AP_Nurse_Universal::update(){
-    #ifndef _DISABLE_PIR
+    #ifdef _PIR_ENABLE
     this -> checkMotion();
     #endif
     this -> checkNoise();
