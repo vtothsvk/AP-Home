@@ -21,6 +21,11 @@
 (byte & 0x02 ? '1' : '0'), \
 (byte & 0x01 ? '1' : '0')
 
+/** BME280 Configuration
+ */
+#define BME280_ADDR         (0x76) 
+#define SEALEVELPRESSURe    (1013.25)
+
 /** ADC Extender I2C address
  */
 #define EXTENDER_ADDR   (0x48)
@@ -44,6 +49,8 @@ typedef enum ap_alert{
     GAS_ALERT = 8,          //0b00001000
     LIGHT_ALERT = 16,       //0b00010000
     PRESSURE_ALERT = 32,    //0b00100000
+    TEMPERATURE_ALERT = 64, //0b01000000
+    HUMIDITY_ALERT = 128,   //0b10000000
     GENERAL_ALERT = -1000,
     I2C_NO_DATA = -1001
 }status_t;
@@ -54,13 +61,14 @@ typedef enum ap_alert{
 #ifndef ap_sensor_node_struct
 #define ap_sensor_node_struct
 typedef struct ap_sensor_node{
-    uint8_t lastAlert;
+    int lastAlert;
     bool lastMotion = false;
     unsigned long lastEcheck;
     union{
-        uint8_t lastVal[6];
+        uint8_t lastVal[4];
         struct{
-            uint8_t lastNoise, lastSmoke, lastGas, lastLight, lastPressure, lastTemperature;
+            uint8_t lastNoise, lastSmoke, lastGas, lastLight;
+            float  lastPressure, lastTemperature, lastHumidity, lastAPressure;
         };
     };
 }ap_node_t;
@@ -71,9 +79,9 @@ typedef struct ap_sensor_node{
 #ifndef ap_node_threshold_type
 #define ap_node_threshold_type
 typedef union ap_node_thresholds{
-    uint8_t TH[6];
+    uint8_t TH[8];
     struct{
-        uint8_t noiseTH, smokeTH, gasTH, lightTH, pressureTH, tempTH;
+        uint8_t noiseTH, smokeTH, gasTH, lightTH, pressureTH, tempTH, humTH, ApressureTH;
     };
 }ap_threshold_t;
 #endif

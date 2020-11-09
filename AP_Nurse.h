@@ -6,6 +6,8 @@
 #include "AP_Nurse_types.h"
 #include "AP_Nurse_Home_Pinout.h"
 #include "PCF8591.h"
+#include <Adafruit_Sensor.h>
+#include <Adafruit_BME280.h>
 
 class AP_Nurse{
 public:
@@ -17,16 +19,20 @@ public:
     uint8_t getLastGas();
     uint8_t getLastLight();
     uint8_t getLastPressure();
+    float getLastTemperature();
+    float getLastHumidity();
+    float getLastAPressure();
     void printData();
 
 protected:
     status_t checkMotion();
     status_t checkNoise();
     status_t checkExtender();
-    status_t checkTemperature();
+    status_t checkBme();
 
     ap_node_t ap_node;
     ap_threshold_t ap_th;
+    Adafruit_BME280 bme;
 };
 
 class AP_Nurse_Room : public AP_Nurse{
