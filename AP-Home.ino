@@ -11,9 +11,15 @@
 #define loopDelay   200
 #endif
 
+/** Alert control directives
+ */
 #define muteDuration    2000
 
-#define pWidth  100
+/** Encoder transmission enable pin control directives
+ */
+#define pWindow     5000//ms pair window
+#define pWidth      100//ms TE pulse width
+#define pInterval   5000//ms periodic RF message advertisement interval
 
 /** Threshold directives
  *
@@ -30,12 +36,14 @@ void AP_loop(uint8_t alert);
 int Alert(bool enable);
 
 void pulse();
+void periodicPulse();
 
 AP_Nurse_Universal ap_node(NOISE_TH, SMOKE_TH, GAS_TH, LIGHT_TH, PRESSURE_TH, TEMP_TH);//ap nurse control interface
 ClickButton button(BUTTON_PIN, HIGH, CLICKBTN_PULLDOWN);//button handler
 volatile bool muted = false;
 volatile bool wasAlert = false;
 volatile long muteStart = 0;
+volatile long lastPulse = 0;
 
 void setup(){
     //Button setup
@@ -46,12 +54,15 @@ void setup(){
     //Serial comm setup
     Serial.begin(115200);
     Serial.println("AP Nurse Universal V 1.0 Booted Succesfully ^^");
+    Serial.println("Pairing...");
+    Serial.println("End of pairing window...");
 }//setup
 
 void loop(){
     button.Update();//updates button state
     uint8_t alert = ap_node.update();//updates sensor data
     AP_loop(alert);//ap node loop body
+    periodicPulse();//periodic RF message advertisement
 
     #ifdef _DEBUG
     delay(loopDelay);
@@ -122,3 +133,11 @@ void pulse(){
     delay(pWidth);
     digitalWrite(TE, HIGH);
 }//pulse
+
+//Periodic RF message advertisement
+void periodicPulse(){
+    if((millis() - lastPulse) >= pInterval){
+        pulse();
+        lastPulse = millis();
+    }
+}//periodicPulse
