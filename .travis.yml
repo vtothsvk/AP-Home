@@ -19,4 +19,4 @@ install:
   #- git clone https://github.com/squix78/esp8266-oled-ssd1306 /usr/local/share/arduino/libraries/esp8266-oled-ssd1306
   
 script:
-  - arduino -v --verify --board esp8266:esp8266:nodemcu $PWD/AP-Home.ino
+  - arduino --verify --board $BD $PWD/AP-Home.ino
