@@ -24,5 +24,5 @@ install:
   #- git clone https://github.com/squix78/esp8266-oled-ssd1306 /usr/local/share/arduino/libraries/esp8266-oled-ssd1306
   
 script:
-  #- arduino --verify --board esp8266:esp8266:d1_mini:CpuFrequency=80,FlashSize=4M1M AP-Home.ino
-  - ./arduino -v --board esp8266:esp8266:nodemcu --verify $PWD/AP-HOME.ino
+  - arduino --verify --board esp8266:esp8266:nodemcuv2:CpuFrequency=80,FlashSize=4M3M AP-Home.ino
+  #- ./arduino -v --board esp8266:esp8266:nodemcu --verify $PWD/AP-HOME.ino
