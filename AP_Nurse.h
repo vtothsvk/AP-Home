@@ -18,6 +18,7 @@ public:
     uint8_t getLastNoise();
     uint8_t getLastSmoke();
     uint8_t getLastGas();
+    //iChanged some stuff
     uint8_t getLastLight();
     uint8_t getLastPressure();
     float getLastTemperature();
