@@ -1,6 +1,6 @@
 # AP-Home
 
-[Image of Build integrity](https://travis-ci.com/vtothsvk/AP-Home.svg?branch=main)
+![Image of Build integrity](https://travis-ci.com/vtothsvk/AP-Home.svg?branch=main)
 
 Custom FW of the AP-Nurse Home node based on the ESP8266 Arduino core.
 
