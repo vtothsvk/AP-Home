@@ -10,7 +10,7 @@ before_install:
 install:
   - ln -s $PWD /usr/local/share/arduino/libraries/
   - arduino --pref "boardsmanager.additional.urls=http://arduino.esp8266.com/stable/package_esp8266com_index.json" --save-prefs
-  - arduino --install-boards esp8266 --save-prefs
+  - arduino --install-boards esp8266:esp8266 --save-prefs
   
   # install lib
   # add your libs here, example:
