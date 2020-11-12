@@ -13,4 +13,4 @@ install:
   - arduino --install-boards esp8266:esp8266 --save-prefs
   
 script:
-  - arduino --verify --board esp8266:esp8266:nodemcu $PWD/AP-Home.ino
+  - arduino --verify --board esp8266:esp8266:nodemcu:CpuFrequency=80,FlashSize=4M1M $PWD/AP-Home.ino
