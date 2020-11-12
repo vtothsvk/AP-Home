@@ -25,4 +25,4 @@ install:
   
 script:
   #- arduino --verify --board esp8266:esp8266:d1_mini:CpuFrequency=80,FlashSize=4M1M AP-Home.ino
-  - ./arduino -v --board esp8266:esp8266nodemcu --verify AP-HOME.ino
+  - ./arduino -v --board esp8266:esp8266:nodemcu --verify AP-HOME.ino
