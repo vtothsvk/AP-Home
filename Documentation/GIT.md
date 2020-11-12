@@ -325,6 +325,27 @@ C:\Users\epic_\mySuperDuperProject\AP-Home>
 
 **Congrats!! the rest of the work is my business :P**
 
+**7. Deleting a branch**
+
+To delete a branch on local repository use command **git branch -d [name_of_branch]**
+
+```
+C:\Users\epic_\mySuperDuperProject\AP-Home> git branch -d name_of_branch
+
+warning: deleting branch 'name_of_branch' that has been merged to
+         'refs/remotes/origin/name_of_branch', but not yet merged to HEAD.
+Deleted branch name_of_branch (was 4955ffd).
+```
+
+To delete a branch on remote repository use command **git push origin --delete [name_of_branch]**
+
+```
+C:\Users\epic_\mySuperDuperProject\AP-Home> git push origin --delete name_of_branch
+
+To https://github.com/vtothsvk/AP-Home
+ - [deleted]         name_of_branch
+ ```
+
 ## Git Issues
 
 Encountered a bug or u have an idea u want to contribute to the project? Create **Git Issue**
@@ -356,27 +377,6 @@ Let's crete a **bug report** issue for a reference
 ![Image of Your new issue](https://i.ibb.co/dc8YhQs/issue-created.png)
 
 Feel free to browse through all the open a close issues any time ur in need of help or inspirtion creating an issue.
-
-**7. Deleting a branch**
-
-To delete a branch on local repository use command **git branch -d [name_of_branch]**
-
-```
-C:\Users\epic_\mySuperDuperProject\AP-Home> git branch -d name_of_branch
-
-warning: deleting branch 'name_of_branch' that has been merged to
-         'refs/remotes/origin/name_of_branch', but not yet merged to HEAD.
-Deleted branch name_of_branch (was 4955ffd).
-```
-
-To delete a branch on remote repository use command **git push origin --delete [name_of_branch]**
-
-```
-C:\Users\epic_\mySuperDuperProject\AP-Home> git push origin --delete name_of_branch
-
-To https://github.com/vtothsvk/AP-Home
- - [deleted]         name_of_branch
- ```
 
 ## Git project management
 
