@@ -23,6 +23,7 @@ AP_Nurse::AP_Nurse(){
     //pin state init
     digitalWrite(TE, HIGH);
     digitalWrite(ENCODER_PIN, HIGH);
+    digitalWrite(ENCODER_PIN2, HIGH);
     digitalWrite(BUZZER_PIN, HIGH);
 
     //I2C init
