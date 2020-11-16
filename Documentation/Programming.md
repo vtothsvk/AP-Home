@@ -17,6 +17,16 @@ ESP8266 package installation tutorial:
 
 https://randomnerdtutorials.com/how-to-install-esp8266-board-arduino-ide/
 
+Install denendecies
+
+1. open Arduino Library Manager
+
+![Image of Library manager](https://i.ibb.co/tMpxkmR/library-manager.png)
+
+2. Install the **Adafruit BME280 Library** and **Adafruit Unified Sensor** libraries
+
+![Image of Install libraries](https://i.ibb.co/wLznMr6/bme280.png)
+
 Ideally u can set up Arduino core projet support within **Visual Studio Code** or **Eclipse IDE** (unnecessary, but highly recommended)
 
 * https://maker.pro/arduino/tutorial/how-to-use-visual-studio-code-for-arduino (VSCode tutorial)
