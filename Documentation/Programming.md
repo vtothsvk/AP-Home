@@ -8,16 +8,18 @@
 
 ## IDE setup
 
+### Install IDE
+
 To programme, build and flash the app u'll need **Arduino IDE v 1.8.9** with the **ESP8266 package**
 
 * https://www.arduino.cc/download_handler.php?f=/arduino-1.8.9-windows.exe (Windows)
 * https://www.arduino.cc/download_handler.php?f=/arduino-1.8.9-linux64.tar.xz (Linux)
 
-ESP8266 package installation tutorial:
+### ESP8266 package installation tutorial:
 
 https://randomnerdtutorials.com/how-to-install-esp8266-board-arduino-ide/
 
-Install denendecies
+### Install denendecies
 
 1. open Arduino Library Manager
 
