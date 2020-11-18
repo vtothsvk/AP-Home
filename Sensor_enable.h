@@ -8,5 +8,6 @@
 #define PIR_ENABLE
 #define NOISE_ENABLE
 #define EXTENDER_ENABLE
+#define BME_ENABLE
 
 #endif
