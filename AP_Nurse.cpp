@@ -30,7 +30,9 @@ AP_Nurse::AP_Nurse(){
     Wire.begin();
 
     //BME280 init
+    #ifdef BME_ENABLE
     bme.begin(BME280_ADDR);
+    #endif
 
     //get program start time
     this -> ap_node.lastEcheck = millis();
@@ -94,9 +96,14 @@ void AP_Nurse::printData(){
     Serial.printf("Light:       %d\r\n", this -> getLastLight());
     Serial.printf("Pressure:    %d\r\n", this -> getLastPressure());
     #endif
-    Serial.printf("Button:      %d\r\n", digitalRead(BUTTON_PIN));
-    Serial.printf("Temperature:    %f\r\n", this -> getLastTemperature());
 
+    #ifdef BME_ENABLE
+    Serial.printf("Temperature: %.1f\r\n", this -> getLastTemperature());
+    Serial.printf("Humidity:    %.1f\r\n", this -> getLastHumidity());
+    Serial.printf("APressure:   %.1f\r\n", this -> getLastAPressure());
+    #endif
+
+    Serial.printf("Button:      %d\r\n", digitalRead(BUTTON_PIN));
 }
 
 status_t AP_Nurse::checkMotion(){
@@ -122,8 +129,6 @@ status_t AP_Nurse::checkNoise(){
 }
 
 status_t AP_Nurse::checkExtender(){
-
-    
     bool wasAlert = false;
     
     //byte buffer = Wire.read();
@@ -207,10 +212,11 @@ uint8_t AP_Nurse_Universal::update(){
     this -> checkNoise();
     #endif
 
-    
     //this -> checkTemperature();
     //this -> checkExtender();
+    #ifdef BME_ENABLE
     this -> checkBme();
+    #endif
     
     #ifdef EXTENDER_ENABLE
     if((millis() - this -> ap_node.lastEcheck) >= 5000){
