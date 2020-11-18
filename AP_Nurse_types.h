@@ -23,7 +23,7 @@
 
 /** BME280 Configuration
  */
-#define BME280_ADDR         (0x76) 
+#define BME280_ADDR         (0x77) 
 #define SEALEVELPRESSURe    (1013.25)
 
 /** ADC Extender I2C address
