@@ -95,6 +95,7 @@ void AP_Nurse::printData(){
     Serial.printf("Pressure:    %d\r\n", this -> getLastPressure());
     #endif
     Serial.printf("Button:      %d\r\n", digitalRead(BUTTON_PIN));
+    Serial.printf("Temperature:    %f\r\n", this -> getLastTemperature());
 
 }
 
