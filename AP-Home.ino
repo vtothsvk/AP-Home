@@ -24,13 +24,22 @@
 /** Threshold directives
  *
  *  @note each level represents one 255th of the reference voltage (eg. a threshold of 100 @ 3.3V represents 1.29V)
- */ 
+ */
+//Day 
 #define NOISE_TH        50
 #define SMOKE_TH        100
 #define GAS_TH          60
 #define LIGHT_TH        80
 #define PRESSURE_TH     80
 #define TEMP_TH         255
+
+//Night
+#define NOISE_TH_N      50
+#define SMOKE_TH_N      100
+#define GAS_TH_N        60
+#define LIGHT_TH_N      80
+#define PRESSURE_TH_N   80
+#define TEMP_TH_N       255
 
 void AP_loop(uint8_t alert);
 int Alert(bool enable);
@@ -39,6 +48,7 @@ void pulse();
 void periodicPulse();
 
 AP_Nurse_Universal ap_node(NOISE_TH, SMOKE_TH, GAS_TH, LIGHT_TH, PRESSURE_TH, TEMP_TH);//ap nurse control interface
+AP_Nurse_Universal ap_node_night(NOISE_TH_N, SMOKE_TH_N, GAS_TH_N, LIGHT_TH_N, PRESSURE_TH_N, TEMP_TH_N);//ap nurse night control interface
 ClickButton button(BUTTON_PIN, HIGH, CLICKBTN_PULLDOWN);//button handler
 volatile bool muted = false;
 volatile bool wasAlert = false;
@@ -60,7 +70,14 @@ void setup(){
 
 void loop(){
     button.Update();//updates button state
-    uint8_t alert = ap_node.update();//updates sensor data
+    int alert = 0;
+
+    if (digitalRead(DAY_NIGHT)) {//sensor data update, basedd on D/N setting
+        alert = ap_node_night.update();
+    } else {
+        alert = ap_node.update();
+    }//if (digitalRead(DAY_NIGHT))
+    
     AP_loop(alert);//ap node loop body
     periodicPulse();//periodic RF message advertisement
 
