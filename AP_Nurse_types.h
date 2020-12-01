@@ -51,9 +51,8 @@ typedef enum ap_alert{
     PRESSURE_ALERT = 32,    //0b00100000 LSB
     TEMPERATURE_ALERT = 64, //0b01000000 LSB
     HUMIDITY_ALERT = 128,   //0b10000000 LSB
-    STUCK_ALERT = 256,      //0b00000001 MSB
-    LIFTUP_ALERT = 512,     //0b00000010 MSB
-    FALL_ALERT = 1024,      //0b00000100 MSB
+    TIMER1_ARMED = 256,     //0b00000001 MSB
+    STUCK_ALERT = 512,      //0b00000010 MSB
     GENERAL_ALERT = -1000,
     I2C_NO_DATA = -1001
 }status_t;
@@ -85,6 +84,9 @@ typedef struct ap_sensor_node{
             float  lastPressure, lastTemperature, lastHumidity, lastAPressure;
         };
     };
+    bool isTimer_a = false;
+    long timerStart;
+    bool isMotionCheck_n = true;
 }ap_node_t;
 #endif
 
@@ -98,6 +100,22 @@ typedef union ap_node_thresholds{
         uint8_t noiseTH, smokeTH, gasTH, lightTH, pressureTH, tempTH, humTH, ApressureTH;
     };
 }ap_threshold_t;
+#endif
+
+/** AP Nurse config structure
+ */
+#ifndef ap_node_conf_struct
+#define ap_node_conf_struct
+typedef struct ap_node_config{
+float noiseTH;
+uint8_t smokeTH;
+uint8_t gasTH;
+uint8_t lightTH;
+uint8_t pressureTH;
+float tempTH;
+float humTH;
+bool enable_pir, enable_noise, enable_bme, enable_extender;
+}ap_config_t;
 #endif
 
 #endif

@@ -2,11 +2,6 @@
 #include "AP_Nurse.h"
 #include "ClickButton.h"
 
-#define BED
-#define DOOR
-#define HALLWAY
-#define KITCHEN
-
 //uncommenting next line enables buzzer
 //#define _BUZZER
 
