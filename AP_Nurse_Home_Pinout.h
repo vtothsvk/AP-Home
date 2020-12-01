@@ -24,7 +24,7 @@
 
 /** Other peripherals pinout
  */
-#define BUTTON_PIN      (3)//Utility button
+#define BUTTON_PIN      (15)//Utility button
 #define BUZZER_PIN      (2)//Buzzer
 #define DAY_NIGHT       (16)//Day/Night switch
 

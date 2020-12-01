@@ -113,7 +113,9 @@ void AP_loop(uint8_t alert){
     
     //Button handling
     if((button.clicks == 1)){
-        Serial.println("ťuk");
+        //Serial.println("ťuk");
+        muted = true;
+        Alert(DISABLE);
     }
 }//AP_loop
 
