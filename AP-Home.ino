@@ -71,19 +71,26 @@ void setup(){
 void loop(){
     button.Update();//updates button state
     int alert = 0;
+    bool d_n = digitalRead(DAY_NIGHT);
 
-    if (digitalRead(DAY_NIGHT)) {//sensor data update, basedd on D/N setting
+    if (d_n) {//sensor data update, basedd on D/N setting
         alert = ap_node_night.update();
     } else {
         alert = ap_node.update();
-    }//if (digitalRead(DAY_NIGHT))
+    }//if (d_n)
     
     AP_loop(alert);//ap node loop body
     periodicPulse();//periodic RF message advertisement
 
     #ifdef _DEBUG
     delay(loopDelay);
-    ap_node.printData();
+
+    if (d_n) {
+        ap_node_night.printData();
+    } else {
+        ap_node.printData();
+    }//if (d_n)
+    
     #endif
 }//loop
 
