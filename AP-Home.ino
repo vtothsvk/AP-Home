@@ -47,8 +47,8 @@ int Alert(bool enable);
 void pulse();
 void periodicPulse();
 
-AP_Nurse_Universal ap_node(NOISE_TH, SMOKE_TH, GAS_TH, LIGHT_TH, PRESSURE_TH, TEMP_TH);//ap nurse control interface
-AP_Nurse_Universal ap_node_night(NOISE_TH_N, SMOKE_TH_N, GAS_TH_N, LIGHT_TH_N, PRESSURE_TH_N, TEMP_TH_N);//ap nurse night control interface
+static AP_Nurse_Universal ap_node(NOISE_TH, SMOKE_TH, GAS_TH, LIGHT_TH, PRESSURE_TH, TEMP_TH);//ap nurse control interface
+static AP_Nurse_Universal ap_node_night(NOISE_TH_N, SMOKE_TH_N, GAS_TH_N, LIGHT_TH_N, PRESSURE_TH_N, TEMP_TH_N);//ap nurse night control interface
 ClickButton button(BUTTON_PIN, HIGH, CLICKBTN_PULLDOWN);//button handler
 volatile bool muted = false;
 volatile bool wasAlert = false;
@@ -71,19 +71,25 @@ void setup(){
 void loop(){
     button.Update();//updates button state
     int alert = 0;
+    bool d_n = digitalRead(DAY_NIGHT);
 
-    if (digitalRead(DAY_NIGHT)) {//sensor data update, basedd on D/N setting
+    if (d_n) {//sensor data update, basedd on D/N setting
         alert = ap_node_night.update();
     } else {
         alert = ap_node.update();
-    }//if (digitalRead(DAY_NIGHT))
+    }//if (d_n)
     
     AP_loop(alert);//ap node loop body
     periodicPulse();//periodic RF message advertisement
 
     #ifdef _DEBUG
     delay(loopDelay);
-    ap_node.printData();
+
+    if (d_n) {
+        ap_node_night.printData();
+    } else {
+        ap_node.printData();
+    }//if (d_n)
     #endif
 }//loop
 
