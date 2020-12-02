@@ -90,7 +90,6 @@ void loop(){
     } else {
         ap_node.printData();
     }//if (d_n)
-    
     #endif
 }//loop
 
