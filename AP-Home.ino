@@ -11,6 +11,9 @@
 #define loopDelay   200
 #endif
 
+//uncommenting the next line enables alert level debug printout
+//#define _LEVEL
+
 /** Alert control directives
  */
 #define muteDuration    2000
@@ -72,19 +75,25 @@ void setup() {
 void loop() {
     button.Update();//updates button state
     int alert = 0;
+    bool d_n = digitalRead(DAY_NIGHT);
 
-    if (digitalRead(DAY_NIGHT)) {//sensor data update, basedd on D/N setting
+    if (d_n) {//sensor data update, basedd on D/N setting
         alert = ap_node_night.update();
     } else {
         alert = ap_node.update();
-    }//if (digitalRead(DAY_NIGHT))
+    }//if (d_n)
     
     AP_loop(alert);//ap node loop body
     periodicPulse();//periodic RF message advertisement
 
     #ifdef _DEBUG
     delay(loopDelay);
-    ap_node.printData();
+    
+    if (d_n){
+        ap_node_night.printData();
+    } else {
+        ap_node.printData();
+    }
     #endif
 }//loop
 
@@ -121,7 +130,11 @@ void AP_loop(int alert) {
 }//AP_loop
 
 //Alert handler
-int Alert(level_t enable){
+int Alert(level_t enable) {
+    #ifdef _LEVEL
+    Serial.printf("a level: %d\r\n", enable);
+    #endif
+
     if (enable) {
         digitalWrite(ENCODER_PIN, LOW);
 
@@ -136,7 +149,7 @@ int Alert(level_t enable){
         wasAlert = true;
         pulse();
         return 1;
-    }//if(enable)
+    }//if (enable)
 
     digitalWrite(ENCODER_PIN, HIGH);
     digitalWrite(ENCODER_PIN2, HIGH);

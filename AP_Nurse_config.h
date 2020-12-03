@@ -3,13 +3,17 @@
 
 #include "AP_Nurse_types.h"
 
-#define BED
+/** AP-Nurse Home version selection directives
+ * 
+ *  @note select only one
+ */
+//#define BED
 #define DOOR
-#define HALLWAY
-#define KITCHEN
+//#define HALLWAY
+//#define KITCHEN
 
+/** AP-Nurse Home DOOR version config
+ */
 #define STUCK_TIMER_DELAY   5//s
-
-
 
 #endif
