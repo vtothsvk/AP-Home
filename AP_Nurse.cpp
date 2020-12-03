@@ -110,10 +110,19 @@ status_t AP_Nurse::checkMotion(){
     this -> ap_node.lastMotion = digitalRead(PIR_PIN);
     if(this -> ap_node.lastMotion){
         this -> ap_node.lastAlert |= MOTION_ALERT;
+        #ifdef DOOR
+        if ((this -> ap_node.isTimer_a) & this -> ap_node.isMotionCheck_n) {
+            this -> disableTimer();
+        } else if (this -> ap_node.isMotionCheck_n) {
+            this -> startTimer();
+        }
+        this -> ap_node.isMotionCheck_n = false;
+        #endif
         return MOTION_ALERT;
     }
     
     this -> ap_node.lastAlert &= (0xff - MOTION_ALERT);
+    this -> ap_node.isMotionCheck_n = true;
     return STATUS_OK;
 }
 
@@ -174,6 +183,30 @@ status_t AP_Nurse::checkBme(){
     return (status_t)ret;
 }
 
+void AP_Nurse::startTimer() {
+    this -> ap_node.isTimer_a = true;
+    this -> ap_node.timerStart = millis();
+}
+
+void AP_Nurse::checkTimer() {
+    if (this -> ap_node.isTimer_a && ((millis() - this -> ap_node.timerStart) >= (STUCK_TIMER_DELAY * 1000))) {
+        this -> ap_node.lastAlert |= STUCK_ALERT;
+    }
+}
+
+void AP_Nurse::disableTimer() {
+    this -> ap_node.isTimer_a = false;
+}
+
+
+void AP_Nurse::timerISR(void *pArg){
+    this -> ap_node.lastAlert |= STUCK_ALERT;
+}
+
+void AP_Nurse::clearAlert(){
+    this -> ap_node.lastAlert = STATUS_OK;
+}
+
 /** AP_Nurse_Room methods definitions
  */
 uint8_t AP_Nurse_Room::update(){
@@ -208,12 +241,14 @@ uint8_t AP_Nurse_Universal::update(){
     this -> checkMotion();
     #endif
 
+    #ifdef DOOR
+    this -> checkTimer();
+    #endif
+
     #ifdef NOISE_ENABLE
     this -> checkNoise();
     #endif
 
-    //this -> checkTemperature();
-    //this -> checkExtender();
     #ifdef BME_ENABLE
     this -> checkBme();
     #endif

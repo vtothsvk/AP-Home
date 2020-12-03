@@ -32,28 +32,41 @@
 
 /** AP Alert macros
  */
-#define ENABLE 1
-#define DISABLE 0
+#define ENABLE      1
+#define DISABLE     0
 
 /** AP Nurse Alert type
  * 
  *  @note each alert uses a dedicated bit of the status code allowing multiple simultanious alert triggers
  */
-#ifndef ap_alert_type
-#define ap_alert_type
+#ifndef ap_alert_type_enum
+#define ap_alert_type_enum
 typedef enum ap_alert{
     STATUS_OK = 0,      
-    MOTION_ALERT = 1,       //0b00000001
-    NOISE_ALERT = 2,        //0b00000010
-    SMOKE_ALERT = 4,        //0b00000100
-    GAS_ALERT = 8,          //0b00001000
-    LIGHT_ALERT = 16,       //0b00010000
-    PRESSURE_ALERT = 32,    //0b00100000
-    TEMPERATURE_ALERT = 64, //0b01000000
-    HUMIDITY_ALERT = 128,   //0b10000000
+    MOTION_ALERT = 1,       //0b00000001 LSB
+    NOISE_ALERT = 2,        //0b00000010 LSB
+    SMOKE_ALERT = 4,        //0b00000100 LSB
+    GAS_ALERT = 8,          //0b00001000 LSB
+    LIGHT_ALERT = 16,       //0b00010000 LSB
+    PRESSURE_ALERT = 32,    //0b00100000 LSB
+    TEMPERATURE_ALERT = 64, //0b01000000 LSB
+    HUMIDITY_ALERT = 128,   //0b10000000 LSB
+    TIMER1_ARMED = 256,     //0b00000001 MSB
+    STUCK_ALERT = 512,      //0b00000010 MSB
     GENERAL_ALERT = -1000,
     I2C_NO_DATA = -1001
 }status_t;
+#endif
+
+/** AP Nurse Alert Level type
+ */
+#ifndef ap_alert_level_enum
+#define ap_alert_level_enum
+typedef enum ap_alert_level{
+    NO_ALERT = 0,
+    ABNORMAL = 1,
+    CRITICAL = 2
+}level_t;
 #endif
 
 /** AP Nurse sensor node data structure
@@ -71,6 +84,9 @@ typedef struct ap_sensor_node{
             float  lastPressure, lastTemperature, lastHumidity, lastAPressure;
         };
     };
+    bool isTimer_a = false;
+    long timerStart;
+    bool isMotionCheck_n = true;
 }ap_node_t;
 #endif
 
@@ -84,6 +100,22 @@ typedef union ap_node_thresholds{
         uint8_t noiseTH, smokeTH, gasTH, lightTH, pressureTH, tempTH, humTH, ApressureTH;
     };
 }ap_threshold_t;
+#endif
+
+/** AP Nurse config structure
+ */
+#ifndef ap_node_conf_struct
+#define ap_node_conf_struct
+typedef struct ap_node_config{
+float noiseTH;
+uint8_t smokeTH;
+uint8_t gasTH;
+uint8_t lightTH;
+uint8_t pressureTH;
+float tempTH;
+float humTH;
+bool enable_pir, enable_noise, enable_bme, enable_extender;
+}ap_config_t;
 #endif
 
 #endif

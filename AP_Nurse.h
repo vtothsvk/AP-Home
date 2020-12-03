@@ -5,6 +5,7 @@
 #include <Wire.h>
 #include "AP_Nurse_types.h"
 #include "AP_Nurse_Home_Pinout.h"
+#include "AP_Nurse_config.h"
 #include "Sensor_enable.h"
 #include "PCF8591.h"
 #include <Adafruit_Sensor.h>
@@ -24,12 +25,17 @@ public:
     float getLastHumidity();
     float getLastAPressure();
     void printData();
+    void clearAlert();
 
 protected:
     status_t checkMotion();
     status_t checkNoise();
     status_t checkExtender();
     status_t checkBme();
+    void startTimer();
+    void checkTimer();
+    void disableTimer();
+    void timerISR(void *pArg);
 
     ap_node_t ap_node;
     ap_threshold_t ap_th;
@@ -81,5 +87,7 @@ public:
     uint8_t update();
 private:
 };
+
+void timerISR(int &alert);
 
 #endif

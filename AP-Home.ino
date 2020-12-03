@@ -25,7 +25,7 @@
  *
  *  @note each level represents one 255th of the reference voltage (eg. a threshold of 100 @ 3.3V represents 1.29V)
  */
-//Day 
+//Day
 #define NOISE_TH        50
 #define SMOKE_TH        100
 #define GAS_TH          60
@@ -41,22 +41,22 @@
 #define PRESSURE_TH_N   80
 #define TEMP_TH_N       255
 
-void AP_loop(uint8_t alert);
-int Alert(bool enable);
+void AP_loop(int alert);
+int Alert(level_t enable);
+level_t alertLevel(int alert);
 
 void pulse();
 void periodicPulse();
 
-static AP_Nurse_Universal ap_node(NOISE_TH, SMOKE_TH, GAS_TH, LIGHT_TH, PRESSURE_TH, TEMP_TH);//ap nurse control interface
-static AP_Nurse_Universal ap_node_night(NOISE_TH_N, SMOKE_TH_N, GAS_TH_N, LIGHT_TH_N, PRESSURE_TH_N, TEMP_TH_N);//ap nurse night control interface
-ClickButton button(BUTTON_PIN, LOW, CLICKBTN_PULLUP);//button handler
-
+AP_Nurse_Universal ap_node(NOISE_TH, SMOKE_TH, GAS_TH, LIGHT_TH, PRESSURE_TH, TEMP_TH);//ap nurse control interface
+AP_Nurse_Universal ap_node_night(NOISE_TH_N, SMOKE_TH_N, GAS_TH_N, LIGHT_TH_N, PRESSURE_TH_N, TEMP_TH_N);//ap nurse night control interface
+ClickButton button(BUTTON_PIN, HIGH, CLICKBTN_PULLDOWN);//button handler
 volatile bool muted = false;
 volatile bool wasAlert = false;
 volatile long muteStart = 0;
 volatile long lastPulse = 0;
 
-void setup(){
+void setup() {
     //Button setup
     button.debounceTime = 50;
     button.multiclickTime = 250;
@@ -69,68 +69,65 @@ void setup(){
     Serial.println("End of pairing window...");
 }//setup
 
-void loop(){
+void loop() {
     button.Update();//updates button state
     int alert = 0;
-    bool d_n = digitalRead(DAY_NIGHT);
 
-    if (d_n) {//sensor data update, basedd on D/N setting
+    if (digitalRead(DAY_NIGHT)) {//sensor data update, basedd on D/N setting
         alert = ap_node_night.update();
     } else {
         alert = ap_node.update();
-    }//if (d_n)
+    }//if (digitalRead(DAY_NIGHT))
     
     AP_loop(alert);//ap node loop body
     periodicPulse();//periodic RF message advertisement
 
     #ifdef _DEBUG
     delay(loopDelay);
-
-    if (d_n) {
-        ap_node_night.printData();
-    } else {
-        ap_node.printData();
-    }//if (d_n)
+    ap_node.printData();
     #endif
 }//loop
 
 //Ap node main loop body
-void AP_loop(uint8_t alert){
+void AP_loop(int alert) {
     //Alert debug
-    if(0 < alert){
+    if (0 < alert) {
         char buffer[9];
         sprintf(&buffer[0], BYTE_TO_BINARY_PATTERN, BYTE_TO_BINARY(alert));
         Serial.print("STATUS: ");
         Serial.println(buffer);  
     }else{
         Serial.println(alert); //debug alert
-    }//if(0 < alert)
-    
+    }//if (0 < alert)
     
     //Alert handling
-    if(alert&&(!muted)){
-        Alert(ENABLE);
+    if (alert&&(!muted)) {
+        level_t condition = alertLevel(alert);
+        Alert(condition);
         muted = true;
         muteStart = millis();
-    }
-    if(muted&&((millis() - muteStart) >= muteDuration)){
+    }//if (alert&&(!muted))
+    if (muted&&((millis() - muteStart) >= muteDuration)) {
         muted = false;
-        Alert(DISABLE);
-    }//if(alert&&(!muted))
+        Alert(NO_ALERT);
+    }//if (muted&&((millis() - muteStart) >= muteDuration))
     
     //Button handling
     if((button.clicks == 1)){
         //Serial.println("ťuk");
         muted = true;
-        Alert(DISABLE);
+        Alert(NO_ALERT);
     }
 }//AP_loop
 
 //Alert handler
-int Alert(bool enable){
-    if(enable){
+int Alert(level_t enable){
+    if (enable) {
         digitalWrite(ENCODER_PIN, LOW);
-        digitalWrite(ENCODER_PIN2, LOW);
+
+        if (enable & CRITICAL) { //in case of a critical condition
+            digitalWrite(ENCODER_PIN2, LOW);
+        }
 
         #ifdef _BUZZER
         digitalWrite(BUZZER_PIN, LOW);
@@ -153,16 +150,59 @@ int Alert(bool enable){
     return 0;
 }//Alert
 
+level_t alertLevel(int alert) {
+
+    #ifdef BED
+    if (alert & (MOTION_ALERT | SMOKE_ALERT | GAS_ALERT | NOISE_ALERT)) {
+        return CRITICAL;
+    } else if (alert && (LIGHT_ALERT | MOTION_ALERT)) {
+        return ABNORMAL;
+    } else {
+        return NO_ALERT;
+    }//(alert & (MOTION_ALERT | SMOKE_ALERT | GAS_ALERT | NOISE_ALERT))
+    #endif
+
+    #ifdef DOOR
+    if (alert & STUCK_ALERT) {
+        return CRITICAL;
+    } else if (alert & MOTION_ALERT) {
+        return ABNORMAL;
+    } else {
+        return NO_ALERT;
+    }//if (alert & STUCK_ALERT)
+    #endif
+
+    #ifdef HALLWAY
+    if (alert & MOTION_ALERT) {
+        return CRITICAL;
+    } else if (alert & NOISE_ALERT) {
+        return ABNORMAL;
+    } else {
+        return NO_ALERT;
+    }//if (alert & MOTION_ALERT) 
+    #endif
+
+    #ifdef KITCHEN
+    if (alert & (0xffff - LIGHT_ALERT)) {
+        return CRITICAL;
+    } else if (alert & LIGHT_ALERT) {
+        return ABNORMAL;
+    } else {
+        return NO_ALERT;
+    }//if (alert & (0xffff - LIGHT_ALERT)) 
+    #endif
+}
+
 //Encoder transmission enable handler
-void pulse(){
+void pulse() {
     digitalWrite(TE, LOW);
     delay(pWidth);
     digitalWrite(TE, HIGH);
 }//pulse
 
 //Periodic RF message advertisement
-void periodicPulse(){
-    if((millis() - lastPulse) >= pInterval){
+void periodicPulse() {
+    if ((millis() - lastPulse) >= pInterval) {
         pulse();
         lastPulse = millis();
     }
