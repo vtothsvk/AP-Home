@@ -168,7 +168,7 @@ level_t alertLevel(int alert) {
     #ifdef BED
     if (alert & (MOTION_ALERT | SMOKE_ALERT | GAS_ALERT | NOISE_ALERT)) {
         return CRITICAL;
-    } else if (alert && (LIGHT_ALERT | MOTION_ALERT)) {
+    } else if ((alert & LIGHT_ALERT) && (alert & MOTION_ALERT)) {
         return ABNORMAL;
     } else {
         return NO_ALERT;
