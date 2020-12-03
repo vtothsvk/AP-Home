@@ -189,12 +189,12 @@ void AP_Nurse::startTimer() {
 }
 
 void AP_Nurse::checkTimer() {
-    if (this -> ap_node.isTimer_a && ((millis() - this -> ap_node.timerStart) >= (STUCK_TIMER_DELAY * 1000)) {
+    if (this -> ap_node.isTimer_a && ((millis() - this -> ap_node.timerStart) >= (STUCK_TIMER_DELAY * 1000))) {
         this -> ap_node.lastAlert |= STUCK_ALERT;
     }
 }
 
-void AP_Nurse::timerDisable() {
+void AP_Nurse::disableTimer() {
     this -> ap_node.isTimer_a = false;
 }
 

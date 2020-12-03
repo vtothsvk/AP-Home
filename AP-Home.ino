@@ -113,15 +113,10 @@ void AP_loop(int alert) {
     }//if (muted&&((millis() - muteStart) >= muteDuration))
     
     //Button handling
-<<<<<<< HEAD
-    if ((button.clicks == 1)) {
-        Serial.println("ťuk");
-=======
     if((button.clicks == 1)){
         //Serial.println("ťuk");
         muted = true;
-        Alert(DISABLE);
->>>>>>> main
+        Alert(NO_ALERT);
     }
 }//AP_loop
 
