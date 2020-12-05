@@ -171,7 +171,7 @@ status_t AP_Nurse::checkExtender(){
 
 status_t AP_Nurse::checkBme(){
     int ret = STATUS_OK;
-    if((this -> ap_node.lastTemperature = bme.readTemperature()) >= this -> ap_th.tempTH){
+    if((this -> ap_node.lastTemperature = bme.readTemperature()) <= this -> ap_th.tempTH){
         ret |= TEMPERATURE_ALERT;
         this -> ap_node.lastAlert |= TEMPERATURE_ALERT;
     }else{
