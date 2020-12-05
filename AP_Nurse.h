@@ -39,6 +39,7 @@ protected:
 
     ap_node_t ap_node;
     ap_threshold_t ap_th;
+    ap_config_t ap_config;
     Adafruit_BME280 bme;
 };
 
@@ -76,13 +77,24 @@ private:
 
 class AP_Nurse_Universal : public AP_Nurse{
 public:
-    explicit AP_Nurse_Universal(float noiseTH, float smokeTH, float gasTH, float lightTH, float pressTH, float tempTH) : AP_Nurse(){
+    explicit AP_Nurse_Universal(float noiseTH, float smokeTH, float gasTH, float lightTH, float pressTH, float tempTH) : AP_Nurse() {
         this -> ap_th.noiseTH = noiseTH;
         this -> ap_th.smokeTH = smokeTH;
         this -> ap_th.gasTH = gasTH;
         this -> ap_th.lightTH = lightTH;
         this -> ap_th.pressureTH = pressTH;
         this -> ap_th.tempTH = tempTH;
+    }
+
+    explicit AP_Nurse_Universal(ap_config_t config) : AP_Nurse() {
+        this -> ap_th.noiseTH = config.noiseTH;
+        this -> ap_th.smokeTH = config.smokeTH;
+        this -> ap_th.gasTH = config.gasTH;
+        this -> ap_th.lightTH = config.lightTH;
+        this -> ap_th.pressureTH = config.pressureTH;
+        this -> ap_th.tempTH = config.tempTH;
+
+        this -> ap_config = config;
     }
     uint8_t update();
 private:
