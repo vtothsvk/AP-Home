@@ -144,7 +144,7 @@ status_t AP_Nurse::checkExtender(){
     for(uint8_t i = 0; i < 4; i++){
         //this -> ap_node.lastVal[i+1] = Wire.read();
         this -> ap_node.lastVal[i+1] = (uint8_t)(extender.adc_read(i, 1) * 255);
-        if(this -> ap_node.lastVal[i+1] >= this -> ap_th.TH[i+1]){
+        if(this -> ap_node.lastVal[i+1] > this -> ap_th.TH[i+1]){
             this -> ap_node.lastAlert |= (1 << (i + 2));
             wasAlert = true;
         }else{
