@@ -23,5 +23,5 @@ Custom FW of the AP-Nurse Home node based on the ESP8266 Arduino core.
 * [Programming](Documentation/Programming.md)
 * [Handling git](Documentation/GIT.md)
 * [AP-Nurse Home node schematic](Documentation/AP-Home_schematic.pdf)
-* [internal logic](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/git_hub_logic.xlsx)
+* [internal logic](https://github.com/vtothsvk/AP-Home/blob/main/Documentation/internal%20logic_12_8_2020.xlsx)
 
