@@ -18,9 +18,9 @@
 
 /** AP-Nurse Care version override
  * 
- *  @note overrides Home system version logic with Care version data advertisement
+ *  @note uncommenting the following line overrides Home system version logic with Care version data advertisement
  */
-#define CARE_OVERRIDE
+//#define CARE_OVERRIDE
 
 #define ADVERTISEMENT_INTERVAL  5//s
 
