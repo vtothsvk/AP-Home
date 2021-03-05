@@ -18,6 +18,12 @@ Custom FW of the AP-Nurse Home node based on the ESP8266 Arduino core.
 * **PCF8591.cpp** - I2C analog extender driver implementation
 * **LICENCE** - GNU General Public License
 
+## Dependencies
+
+* **Adafruit Unified Sensor library** by Adafruit
+* **Adafruit BME280 library** by Adafruit
+* **WhareHauoraWiFiManager library** by tzapu
+
 ## Documentation
 
 * [Programming](Documentation/Programming.md)
