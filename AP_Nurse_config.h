@@ -22,6 +22,10 @@
  */
 //#define CARE_OVERRIDE
 
+/** AP-Nurse Care advertisement interval
+ * 
+ *  @note using times less than 5s not recommended
+ */
 #define ADVERTISEMENT_INTERVAL  5//s
 
 #endif
