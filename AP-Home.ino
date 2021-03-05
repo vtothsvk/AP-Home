@@ -76,10 +76,6 @@ void setup() {
     //Start WiFi manager
     runWifiManager();
     #endif
-    
-    while(true){
-        delay(100);
-    }
 }//setup
 
 void loop() {
