@@ -24,6 +24,7 @@ public:
     float getLastTemperature();
     float getLastHumidity();
     float getLastAPressure();
+    ap_node_t getLastData();
     void printData();
     void clearAlert();
 

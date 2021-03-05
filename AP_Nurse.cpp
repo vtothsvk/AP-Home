@@ -79,6 +79,10 @@ float AP_Nurse::getLastAPressure(){
     return (this -> ap_node.lastAPressure);
 }
 
+ap_node_t AP_Nurse::getLastData(){
+    return this -> ap_node;
+}
+
 void AP_Nurse::printData(){
     Serial.println();
   

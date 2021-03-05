@@ -1,6 +1,7 @@
 #include <ESP8266WiFi.h>    
 #include "AP_Nurse.h"
 #include "ClickButton.h"
+#include "networkManager.h"
 
 //uncommenting next line enables buzzer
 //#define _BUZZER
@@ -70,6 +71,11 @@ void setup() {
     Serial.println("AP Nurse Universal V 1.0 Booted Succesfully ^^");
     Serial.println("Pairing...");
     Serial.println("End of pairing window...");
+
+    #ifdef CARE_OVERRIDE
+    //Start WiFi manager
+    runWifiManager();
+    #endif
 }//setup
 
 void loop() {
@@ -83,8 +89,20 @@ void loop() {
         alert = ap_node.update();
     }//if (d_n)
     
+    #ifndef CARE_OVERRIDE
     AP_loop(alert);//ap node loop body
     periodicPulse();//periodic RF message advertisement
+    #endif
+
+    #ifdef CARE_OVERRIDE
+    if (d_n) {//sensor data advertisement, based on D/N setting
+        advertiseData(ap_node_night.getLastData());
+    } else {
+        advertiseData(ap_node.getLastData());
+    }//if (d_n)
+
+    delay(ADVERTISEMENT_INTERVAL * 1000);
+    #endif
 
     #ifdef _DEBUG
     delay(loopDelay);

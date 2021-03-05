@@ -25,7 +25,7 @@ https://randomnerdtutorials.com/how-to-install-esp8266-board-arduino-ide/
 
 ![Image of Library manager](https://i.ibb.co/tMpxkmR/library-manager.png)
 
-2. Install the **Adafruit BME280 Library** and **Adafruit Unified Sensor** libraries
+2. Find and install desired library
 
 ![Image of Install libraries](https://i.ibb.co/wLznMr6/bme280.png)
 
