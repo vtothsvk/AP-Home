@@ -1,7 +1,7 @@
 #ifndef NETWORK_MANAGER_H
 #define NETWORK_MANAGER_H
 
-#include <String.h>
+#include <string.h>
 #include <ESP8266WiFi.h>
 #include <LittleFS.h>
 #include <ESP8266HTTPClient.h>
