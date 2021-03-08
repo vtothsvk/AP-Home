@@ -175,7 +175,7 @@ status_t AP_Nurse::checkExtender(){
 
 status_t AP_Nurse::checkBme(){
     int ret = STATUS_OK;
-    if((this -> ap_node.lastTemperature = bme.readTemperature()) >= this -> ap_th.tempTH){
+    if((this -> ap_node.lastTemperature = bme.readTemperature()) <= this -> ap_th.tempTH){
         ret |= TEMPERATURE_ALERT;
         this -> ap_node.lastAlert |= TEMPERATURE_ALERT;
     }else{
@@ -242,7 +242,9 @@ uint8_t AP_Nurse_Hallway::update(){
  */
 uint8_t AP_Nurse_Universal::update(){
     #ifdef PIR_ENABLE
-    this -> checkMotion();
+    if (this -> ap_config.enable_pir) {
+        this -> checkMotion();
+    }
     #endif
 
     #ifdef DOOR
@@ -250,15 +252,19 @@ uint8_t AP_Nurse_Universal::update(){
     #endif
 
     #ifdef NOISE_ENABLE
-    this -> checkNoise();
+    if ( this -> ap_config.enable_noise) {
+        this -> checkNoise();
+    }
     #endif
 
     #ifdef BME_ENABLE
-    this -> checkBme();
+    if (this -> ap_config.enable_bme) {
+        this -> checkBme();
+    }
     #endif
     
     #ifdef EXTENDER_ENABLE
-    if((millis() - this -> ap_node.lastEcheck) >= 5000){
+    if( this ->ap_config.enable_extender && ((millis() - this -> ap_node.lastEcheck) >= 5000)){
         this -> checkExtender();
         this -> ap_node.lastEcheck = millis();
     }

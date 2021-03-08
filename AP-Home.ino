@@ -25,26 +25,6 @@
 #define pWidth      100//ms TE pulse width
 #define pInterval   5000//ms periodic RF message advertisement interval
 
-/** Threshold directives
- *
- *  @note each level represents one 255th of the reference voltage (eg. a threshold of 100 @ 3.3V represents 1.29V)
- */
-//Day
-#define NOISE_TH        50
-#define SMOKE_TH        100
-#define GAS_TH          60
-#define LIGHT_TH        80
-#define PRESSURE_TH     80
-#define TEMP_TH         255
-
-//Night
-#define NOISE_TH_N      50
-#define SMOKE_TH_N      100
-#define GAS_TH_N        60
-#define LIGHT_TH_N      80
-#define PRESSURE_TH_N   80
-#define TEMP_TH_N       255
-
 void AP_loop(int alert);
 int Alert(level_t enable);
 level_t alertLevel(int alert);
@@ -52,8 +32,15 @@ level_t alertLevel(int alert);
 void pulse();
 void periodicPulse();
 
-AP_Nurse_Universal ap_node(NOISE_TH, SMOKE_TH, GAS_TH, LIGHT_TH, PRESSURE_TH, TEMP_TH);//ap nurse control interface
-AP_Nurse_Universal ap_node_night(NOISE_TH_N, SMOKE_TH_N, GAS_TH_N, LIGHT_TH_N, PRESSURE_TH_N, TEMP_TH_N);//ap nurse night control interface
+/** AP-Nurse Home config initialisation
+ */
+ap_config_t config_day = { NOISE_TH, SMOKE_TH, GAS_TH, LIGHT_TH, PRESSURE_TH, TEMP_TH, HUMIDITY_TH, PIR_E, NOISE_E, BME_E, EXTENDER_E };
+ap_config_t config_night = { NOISE_TH_N, SMOKE_TH_N, GAS_TH_N, LIGHT_TH_N, PRESSURE_TH_N, TEMP_TH_N, HUMIDITY_TH_N, PIR_E_N, NOISE_E_N, BME_E_N, EXTENDER_E_N };
+
+/** AP-Nurse Home object and global variable initialisation
+ */
+static AP_Nurse_Universal ap_node(config_day);//ap nurse control interface
+static AP_Nurse_Universal ap_node_night(config_night);//ap nurse night control interface
 ClickButton button(BUTTON_PIN, HIGH, CLICKBTN_PULLDOWN);//button handler
 volatile bool muted = false;
 volatile bool wasAlert = false;
