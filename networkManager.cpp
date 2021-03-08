@@ -139,7 +139,7 @@ int advertiseData(ap_node_t data) {
     \"sn\": \"%s\",\
     \"kid\": \"%s\",\
     \"body\":\
-    [{ \"LoggerName\": \"FSR\", \"MeasuredData\": [{ \"Name\": \"motion\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
+    [{ \"LoggerName\": \"FSR\", \"MeasuredData\": [{ \"Name\": \"pressure\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
     ]}", SN, kid, data.lastMotion, myId);
     Serial.println();
     Serial.println(payload);
