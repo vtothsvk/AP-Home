@@ -31,7 +31,7 @@ AP_Nurse::AP_Nurse(){
 
     //BME280 init
     #ifdef BME_ENABLE
-    bme.begin(BME280_ADDR);
+    bme.begin();
     #endif
 
     //get program start time

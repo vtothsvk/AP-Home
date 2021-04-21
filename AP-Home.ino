@@ -4,7 +4,7 @@
 #include "networkManager.h"
 
 //uncommenting next line enables buzzer
-//#define _BUZZER
+#define _BUZZER
 
 //uncommenting the next line enables debug printout
 //#define _DEBUG
@@ -70,16 +70,16 @@ void loop() {
     int alert = 0;
     bool d_n = digitalRead(DAY_NIGHT);
 
+    #ifndef CARE_OVERRIDE
+    AP_loop(alert);//ap node loop body
+    periodicPulse();//periodic RF message advertisement
+    #endif
+
     if (d_n) {//sensor data update, basedd on D/N setting
         alert = ap_node_night.update();
     } else {
         alert = ap_node.update();
     }//if (d_n)
-    
-    #ifndef CARE_OVERRIDE
-    AP_loop(alert);//ap node loop body
-    periodicPulse();//periodic RF message advertisement
-    #endif
 
     #ifdef CARE_OVERRIDE
     if (d_n) {//sensor data advertisement, based on D/N setting
