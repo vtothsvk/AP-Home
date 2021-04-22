@@ -24,7 +24,7 @@ void runWifiManager() {
     WiFiManager wm;
     bool res;
 
-    res = wm.autoConnect(apSSID,"2021niCElife123"); // password protected ap
+    res = wm.autoConnect(apSSID, "nicelife2021"); // password protected ap
 
     if(!res) {
         Serial.println("Failed to connect");
