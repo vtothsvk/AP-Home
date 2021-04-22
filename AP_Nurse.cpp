@@ -31,7 +31,7 @@ AP_Nurse::AP_Nurse(){
 
     //BME280 init
     #ifdef BME_ENABLE
-    bme.begin(BME280_ADDR);
+    bme.begin();
     #endif
 
     //get program start time
@@ -183,6 +183,7 @@ status_t AP_Nurse::checkBme(){
     }
     this -> ap_node.lastHumidity = bme.readHumidity();
     this -> ap_node.lastAPressure = bme.readPressure();
+    this -> ap_node.lastSmoke = bme.readGas();
 
     return (status_t)ret;
 }

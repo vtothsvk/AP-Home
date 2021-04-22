@@ -9,7 +9,7 @@
 #include "Sensor_enable.h"
 #include "PCF8591.h"
 #include <Adafruit_Sensor.h>
-#include <Adafruit_BME280.h>
+#include <Adafruit_BME680.h>
 
 class AP_Nurse{
 public:
@@ -41,7 +41,7 @@ protected:
     ap_node_t ap_node;
     ap_threshold_t ap_th;
     ap_config_t ap_config;
-    Adafruit_BME280 bme;
+    Adafruit_BME680 bme;
 };
 
 class AP_Nurse_Room : public AP_Nurse{
