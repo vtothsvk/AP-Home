@@ -15,6 +15,15 @@ bool needConnect = true;
 
 HTTPClient http;
 
+#define STUCK_TIME 600000//ms
+#define STUCK_MUTE 20000//ms
+
+bool mHold = false;
+bool wasMotion = false;
+long motionTime = 0;
+bool stuckMute = false;
+long stuckMuteTime = 0;
+
 void runWifiManager() {
     apSSID[10] = SN[14];
     apSSID[11] = SN[15];
@@ -49,12 +58,43 @@ int advertiseData(ap_node_t data) {
     ]", epoch, data.lastMotion, myId, epoch, data.lastSmoke, myId, epoch, data.lastGas, myId, epoch, data.lastLight, myId, epoch, data.lastPressure, myId, epoch, data.lastTemperature, data.lastHumidity, myId);
     Serial.println(payload);*/
 
+    bool stuck = false;
+
+    #ifdef DOOR
+    if (!mHold) {
+      if (stuckMute) {
+        if ((millis() - stuckMuteTime) >= STUCK_MUTE) {
+          stuckMute = false;
+        }
+      }
+
+      if (data.lastMotion && (!stuckMute)) {
+        if (!wasMotion) {
+          wasMotion = true;
+          motionTime = millis();
+          Serial.println("mot");
+        }else{
+          wasMotion = false;
+          stuckMute = true;
+          stuckMuteTime = millis();
+        }
+      }
+
+      if (wasMotion && ((millis() - motionTime) >= STUCK_TIME)) {
+        stuck = true;
+        wasMotion = false;
+      }
+    }
+
+    mHold = data.lastMotion;
+    #endif
+
     sprintf(&payload[0], "{\
     \"sn\": \"%s\",\
     \"kid\": \"%s\",\
     \"body\":\
-    [{ \"LoggerName\": \"PIR\", \"MeasuredData\": [{ \"Name\": \"motion\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
-    ]}", SN, kid, data.lastMotion, myId);
+    [{ \"LoggerName\": \"PIR\", \"MeasuredData\": [{ \"Name\": \"motion\",\"Value\": %d }, { \"Name\": \"stuck\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
+    ]}", SN, kid, data.lastMotion, stuck, myId);
     Serial.println();
     Serial.println(payload);
     Serial.println();
