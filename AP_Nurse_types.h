@@ -87,6 +87,7 @@ typedef struct ap_sensor_node{
     bool isTimer_a = false;
     long timerStart;
     bool isMotionCheck_n = true;
+    uint8_t lastNoise;
 }ap_node_t;
 #endif
 
