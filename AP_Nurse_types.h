@@ -80,10 +80,10 @@ typedef struct ap_sensor_node{
     union{
         uint8_t lastVal[4];
         struct{
-            uint8_t lastNoise, lastSmoke, lastGas, lastLight;
-            float  lastPressure, lastTemperature, lastHumidity, lastAPressure;
+            uint8_t lastSmoke, lastGas, lastLight, lastPressure;
         };
     };
+    float lastTemperature, lastHumidity, lastAPressure;
     bool isTimer_a = false;
     long timerStart;
     bool isMotionCheck_n = true;

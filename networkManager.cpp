@@ -48,17 +48,10 @@ void runWifiManager() {
 }
 
 int advertiseData(ap_node_t data) {
-    /*sprintf(&payload[0], "\
-    [ { \"LoggerName\": \"PIR\", \"Timestamp\": %ld, \"MeasuredData\": [{ \"Name\": \"motion\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" }, \
-    { \"LoggerName\": \"M1\", \"Timestamp\": %ld, \"MeasuredData\": [{ \"Name\": \"smoke\",\"Value\": %.2f }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" }, \
-    { \"LoggerName\": \"M2\", \"Timestamp\": %ld, \"MeasuredData\": [{ \"Name\": \"gas\",\"Value\": %.2f }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" }, \
-    { \"LoggerName\": \"LDR\", \"Timestamp\": %ld, \"MeasuredData\": [{ \"Name\": \"light\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" }, \
-    { \"LoggerName\": \"FSR\", \"Timestamp\": %ld, \"MeasuredData\": [{ \"Name\": \"pressure\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" }, \
-    { \"LoggerName\": \"BME280\", \"Timestamp\": %ld, \"MeasuredData\": [{ \"Name\": \"temperature\",\"Value\": %.2f }, { \"Name\": \"humidity\",\"Value\": %.2f }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
-    ]", epoch, data.lastMotion, myId, epoch, data.lastSmoke, myId, epoch, data.lastGas, myId, epoch, data.lastLight, myId, epoch, data.lastPressure, myId, epoch, data.lastTemperature, data.lastHumidity, myId);
-    Serial.println(payload);*/
-
     bool stuck = false;
+
+    http.begin(serverName);
+    delay(100);
 
     #ifdef DOOR
     if (!mHold) {
@@ -99,7 +92,18 @@ int advertiseData(ap_node_t data) {
     Serial.println(payload);
     Serial.println();
 
-    http.begin(serverName);
+    http.addHeader("Content-Type", "application/json");
+
+    int ret = http.POST(payload);
+    //kontrola responsu
+    if(ret != 200){
+      Serial.printf("ret: %d", ret);
+    } else {
+      Serial.println("OK");
+    }
+
+    delay(100);
+
     http.addHeader("Content-Type", "application/json");
 
     int ret = http.POST(payload);
@@ -180,7 +184,7 @@ int advertiseData(ap_node_t data) {
     \"kid\": \"%s\",\
     \"body\":\
     [{ \"LoggerName\": \"FSR\", \"MeasuredData\": [{ \"Name\": \"pressure\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
-    ]}", SN, kid, data.lastMotion, myId);
+    ]}", SN, kid, data.lastPressure, myId);
     Serial.println();
     Serial.println(payload);
     Serial.println();
