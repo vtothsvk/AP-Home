@@ -87,6 +87,7 @@ typedef struct ap_sensor_node{
     bool isTimer_a = false;
     long timerStart;
     bool isMotionCheck_n = true;
+    uint8_t lastNoise;
 }ap_node_t;
 #endif
 
@@ -97,7 +98,7 @@ typedef struct ap_sensor_node{
 typedef union ap_node_thresholds{
     uint8_t TH[8];
     struct{
-        uint8_t noiseTH, smokeTH, gasTH, lightTH, pressureTH, tempTH, humTH, ApressureTH;
+        uint8_t smokeTH, gasTH, lightTH, pressureTH, tempTH, humTH, ApressureTH, noiseTH;
     };
 }ap_threshold_t;
 #endif
