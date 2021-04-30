@@ -200,7 +200,7 @@ status_t AP_Nurse::checkBme(){
         return I2C_NO_DATA;
     }
 
-    if((this -> ap_node.lastTemperature = bme.temperature <= this -> ap_th.tempTH){
+    if((this -> ap_node.lastTemperature = bme.temperature) <= this -> ap_th.tempTH){
         ret |= TEMPERATURE_ALERT;
         this -> ap_node.lastAlert |= TEMPERATURE_ALERT;
     }else{
@@ -210,6 +210,12 @@ status_t AP_Nurse::checkBme(){
     //this -> ap_node.lastAPressure = bme.readPressure();
     this -> ap_node.bmeSmoke = bme.gas_resistance;
     #endif
+
+    Serial.printf("t: %.2f\r\nh: %.2f\r\nsmoke: %.2f\r\n",
+        this -> ap_node.lastTemperature,
+        this -> ap_node.lastHumidity,
+        this -> ap_node.bmeSmoke
+    );
 
     return (status_t)ret;
 }
