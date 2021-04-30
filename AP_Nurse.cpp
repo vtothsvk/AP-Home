@@ -211,6 +211,12 @@ status_t AP_Nurse::checkBme(){
     this -> ap_node.bmeSmoke = bme.gas_resistance;
     #endif
 
+    Serial.printf("t: %.2f\r\nh: %.2f\r\nsmoke: %.2f\r\n",
+        this -> ap_node.lastTemperature,
+        this -> ap_node.lastHumidity,
+        this -> ap_node.bmeSmoke
+    );
+
     return (status_t)ret;
 }
 
