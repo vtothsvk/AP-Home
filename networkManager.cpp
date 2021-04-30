@@ -179,7 +179,7 @@ int advertiseData(ap_node_t data) {
 
     delay(100);
 
-    sprintf(&payload[0], "
+    sprintf(&payload[0], "{\
     \"sn\": \"%s\",\
     \"kid\": \"%s\",\
     \"body\":\
