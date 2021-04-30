@@ -120,8 +120,8 @@ int advertiseData(ap_node_t data) {
     \"sn\": \"%s\",\
     \"kid\": \"%s\",\
     \"body\":\
-    [{ \"LoggerName\": \"M1\", \"MeasuredData\": [{ \"Name\": \"smoke\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
-    ]}", SN, kid, data.lastSmoke, myId);
+    [{ \"LoggerName\": \"M1\", \"MeasuredData\": [{ \"Name\": \"smoke\",\"Value\": %.2f }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
+    ]}", SN, kid, data.bmeSmoke, myId);
     Serial.println();
     Serial.println(payload);
     Serial.println();
@@ -179,7 +179,7 @@ int advertiseData(ap_node_t data) {
 
     delay(100);
 
-    sprintf(&payload[0], "{\
+    sprintf(&payload[0], "
     \"sn\": \"%s\",\
     \"kid\": \"%s\",\
     \"body\":\
