@@ -84,6 +84,7 @@ typedef struct ap_sensor_node{
         };
     };
     float lastTemperature, lastHumidity, lastAPressure;
+    float bmeSmoke;
     bool isTimer_a = false;
     long timerStart;
     bool isMotionCheck_n = true;

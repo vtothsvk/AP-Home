@@ -32,6 +32,14 @@ AP_Nurse::AP_Nurse(){
     //BME280 init
     #ifdef BME_ENABLE
     bme.begin();
+
+    #ifdef CARE_OVERRIDE
+    bme.setTemperatureOversampling(BME680_OS_8X);
+    bme.setHumidityOversampling(BME680_OS_2X);
+    bme.setPressureOversampling(BME680_OS_4X);
+    bme.setIIRFilterSize(BME680_FILTER_SIZE_3);
+    bme.setGasHeater(320, 150);
+    #endif
     #endif
 
     //get program start time
@@ -175,6 +183,8 @@ status_t AP_Nurse::checkExtender(){
 
 status_t AP_Nurse::checkBme(){
     int ret = STATUS_OK;
+
+    #ifndef CARE_OVERRIDE
     if((this -> ap_node.lastTemperature = bme.readTemperature()) <= this -> ap_th.tempTH){
         ret |= TEMPERATURE_ALERT;
         this -> ap_node.lastAlert |= TEMPERATURE_ALERT;
@@ -184,6 +194,21 @@ status_t AP_Nurse::checkBme(){
     this -> ap_node.lastHumidity = bme.readHumidity();
     this -> ap_node.lastAPressure = bme.readPressure();
     this -> ap_node.lastSmoke = bme.readGas();
+    #else
+    if (! bme.performReading()) {
+        Serial.println("Failed to perform bme reading");
+        return I2C_NO_DATA;
+    }
+
+    if((this -> ap_node.lastTemperature = bme.temperature <= this -> ap_th.tempTH){
+        ret |= TEMPERATURE_ALERT;
+        this -> ap_node.lastAlert |= TEMPERATURE_ALERT;
+    }else{
+        this -> ap_node.lastAlert &= (0xff - TEMPERATURE_ALERT);
+    }
+    this -> ap_node.lastHumidity = bme.humidity;
+    //this -> ap_node.lastAPressure = bme.readPressure();
+    this -> ap_node.bmeSmoke = bme.gas_resistance;
 
     return (status_t)ret;
 }
