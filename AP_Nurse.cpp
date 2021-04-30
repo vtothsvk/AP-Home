@@ -209,6 +209,7 @@ status_t AP_Nurse::checkBme(){
     this -> ap_node.lastHumidity = bme.humidity;
     //this -> ap_node.lastAPressure = bme.readPressure();
     this -> ap_node.bmeSmoke = bme.gas_resistance;
+    #endif
 
     return (status_t)ret;
 }
