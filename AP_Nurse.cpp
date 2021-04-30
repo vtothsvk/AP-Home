@@ -31,14 +31,14 @@ AP_Nurse::AP_Nurse(){
 
     //BME280 init
     #ifdef BME_ENABLE
-    bme.begin();
+    this -> bme.begin();
 
     #ifdef CARE_OVERRIDE
-    bme.setTemperatureOversampling(BME680_OS_8X);
-    bme.setHumidityOversampling(BME680_OS_2X);
-    bme.setPressureOversampling(BME680_OS_4X);
-    bme.setIIRFilterSize(BME680_FILTER_SIZE_3);
-    bme.setGasHeater(320, 150);
+    this -> bme.setTemperatureOversampling(BME680_OS_8X);
+    this -> bme.setHumidityOversampling(BME680_OS_2X);
+    this -> bme.setPressureOversampling(BME680_OS_4X);
+    this -> bme.setIIRFilterSize(BME680_FILTER_SIZE_3);
+    this -> bme.setGasHeater(320, 150);
     #endif
     #endif
 
@@ -185,30 +185,30 @@ status_t AP_Nurse::checkBme(){
     int ret = STATUS_OK;
 
     #ifndef CARE_OVERRIDE
-    if((this -> ap_node.lastTemperature = bme.readTemperature()) <= this -> ap_th.tempTH){
+    if((this -> ap_node.lastTemperature = this -> bme.readTemperature()) <= this -> ap_th.tempTH){
         ret |= TEMPERATURE_ALERT;
         this -> ap_node.lastAlert |= TEMPERATURE_ALERT;
     }else{
         this -> ap_node.lastAlert &= (0xff - TEMPERATURE_ALERT);
     }
-    this -> ap_node.lastHumidity = bme.readHumidity();
-    this -> ap_node.lastAPressure = bme.readPressure();
-    this -> ap_node.lastSmoke = bme.readGas();
+    this -> ap_node.lastHumidity = this -> bme.readHumidity();
+    this -> ap_node.lastAPressure = this -> bme.readPressure();
+    this -> ap_node.lastSmoke = this -> bme.readGas();
     #else
-    if (! bme.performReading()) {
+    if (! this -> bme.performReading()) {
         Serial.println("Failed to perform bme reading");
         return I2C_NO_DATA;
     }
 
-    if((this -> ap_node.lastTemperature = bme.temperature) <= this -> ap_th.tempTH){
+    if((this -> ap_node.lastTemperature = this -> bme.temperature) <= this -> ap_th.tempTH){
         ret |= TEMPERATURE_ALERT;
         this -> ap_node.lastAlert |= TEMPERATURE_ALERT;
     }else{
         this -> ap_node.lastAlert &= (0xff - TEMPERATURE_ALERT);
     }
-    this -> ap_node.lastHumidity = bme.humidity;
-    //this -> ap_node.lastAPressure = bme.readPressure();
-    this -> ap_node.bmeSmoke = bme.gas_resistance;
+    this -> ap_node.lastHumidity = this -> bme.humidity;
+    //this -> ap_node.lastAPressure = this -> bme.readPressure();
+    this -> ap_node.bmeSmoke = this -> bme.gas_resistance;
     #endif
 
     Serial.printf("t: %.2f\r\nh: %.2f\r\nsmoke: %.2f\r\n",
@@ -217,7 +217,7 @@ status_t AP_Nurse::checkBme(){
         this -> ap_node.bmeSmoke
     );
 
-    return (status_t)ret;
+    return (status_t)ret; 
 }
 
 void AP_Nurse::startTimer() {
