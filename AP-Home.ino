@@ -47,6 +47,10 @@ volatile bool wasAlert = false;
 volatile long muteStart = 0;
 volatile long lastPulse = 0;
 
+static long advTime = 0;
+static long diffAdvTime = 0;
+static ap_node_t oldData;
+
 void setup() {
     //Button setup
     button.debounceTime = 50;
@@ -62,6 +66,7 @@ void setup() {
     #ifdef CARE_OVERRIDE
     //Start WiFi manager
     runWifiManager();
+    advTime = diffAdvTime = millis();
     #endif
 }//setup
 
@@ -82,13 +87,27 @@ void loop() {
     }//if (d_n)
 
     #ifdef CARE_OVERRIDE
+    ap_node_t data;
     if (d_n) {//sensor data advertisement, based on D/N setting
-        advertiseData(ap_node_night.getLastData());
+        //advertiseData(ap_node_night.getLastData());
+        data = ap_node_night.getLastData();
     } else {
-        advertiseData(ap_node.getLastData());
+        //advertiseData(ap_node.getLastData());
+        data = ap_node.getLastData();
     }//if (d_n)
 
-    delay(ADVERTISEMENT_INTERVAL * 1000);
+    if ((millis() - advTime) >= (ADVERTISEMENT_INTERVAL * 12 * 1000)) {
+        advertiseData(data);
+        advTime = millis();
+    }
+
+    if ((millis() - diffAdvTime) >= (ADVERTISEMENT_INTERVAL * 1000)) {
+        diffAdv(data, oldData);
+        diffAdvTime = millis();
+    }
+
+    oldData = data;
+    delay(100);
     #endif
 
     #ifdef _DEBUG
