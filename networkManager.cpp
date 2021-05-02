@@ -199,8 +199,21 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
     bool stuck = false;
     int ret = 0;
 
-
     http.begin(serverName);
+    delay(100);
+
+    sprintf(payload, "{dummy}");
+
+    http.addHeader("Content-Type", "application/json");
+
+    int ret = http.POST(payload);
+    //kontrola responsu
+    if(ret != 200){
+      Serial.printf("ret: %d", ret);
+    } else {
+      Serial.println("OK");
+    }
+
     delay(100);
 
     #ifdef DOOR
@@ -242,18 +255,6 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       Serial.println();
       Serial.println(payload);
       Serial.println();
-
-      http.addHeader("Content-Type", "application/json");
-
-      int ret = http.POST(payload);
-      //kontrola responsu
-      if(ret != 200){
-        Serial.printf("ret: %d", ret);
-      } else {
-        Serial.println("OK");
-      }
-
-      delay(100);
 
       http.addHeader("Content-Type", "application/json");
 
