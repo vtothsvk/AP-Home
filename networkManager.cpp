@@ -206,7 +206,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
 
     http.addHeader("Content-Type", "application/json");
 
-    int ret = http.POST(payload);
+    ret = http.POST(payload);
     //kontrola responsu
     if(ret != 200){
       Serial.printf("ret: %d", ret);
