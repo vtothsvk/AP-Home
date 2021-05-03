@@ -17,7 +17,10 @@ HTTPClient http;
 
 #define STUCK_TIME 600000//ms
 #define STUCK_MUTE 20000//ms
+
+//Diff thresholds
 #define DIFF_K  0.05//*100%
+#define SMOKE_DIFF_K DIFF_K * 2
 
 bool mHold = false;
 bool wasMotion = false;
@@ -293,7 +296,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       delay(100);
     }
 
-    if (diffCheckF(data.bmeSmoke, oldData.bmeSmoke, DIFF_K * 2)) {
+    if (diffCheckF(data.bmeSmoke, oldData.bmeSmoke, SMOKE_DIFF_K)) {
       sprintf(&payload[0], "{\
       \"sn\": \"%s\",\
       \"kid\": \"%s\",\
