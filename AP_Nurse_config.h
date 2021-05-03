@@ -28,10 +28,10 @@
 #define TEMP_TH         18
 #define HUMIDITY_TH     50
 //Day sensor enable
-#define PIR_E           false
+#define PIR_E           true
 #define NOISE_E         true
 #define BME_E           true
-#define EXTENDER_E      false
+#define EXTENDER_E      true
 
 //Night uint8_t
 #define NOISE_TH_N      50
@@ -126,7 +126,7 @@
 //Day sensor enable
 #define PIR_E           true
 #define NOISE_E         true
-#define BME_E           false
+#define BME_E           true
 #define EXTENDER_E      true
 
 //Night uint8_t
@@ -141,7 +141,7 @@
 //Night sensor enable
 #define PIR_E_N         true
 #define NOISE_E_N       true
-#define BME_E_N         false
+#define BME_E_N         true
 #define EXTENDER_E_N    true
 #endif//KITCHEN
 
