@@ -101,13 +101,10 @@ void loop() {
         advTime = millis();
     }
 
-    if ((millis() - diffAdvTime) >= (ADVERTISEMENT_INTERVAL * 1000)) {
-        diffAdv(data, oldData);
-        diffAdvTime = millis();
-    }
+    diffAdv(data, oldData);
 
     oldData = data;
-    delay(100);
+    delay(ADVERTISEMENT_INTERVAL * 1000);
     #endif
 
     #ifdef _DEBUG
