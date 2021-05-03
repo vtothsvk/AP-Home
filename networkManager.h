@@ -14,7 +14,7 @@
 void runWifiManager(void);
 int advertiseData(ap_node_t data);
 int diffAdv(ap_node_t data, ap_node_t oldData);
-bool diffCheck(uint8_t val, uint8_t oldVal);
-bool diffCheckF(float val, float oldVal);
+bool diffCheck(uint8_t val, uint8_t oldVal, float K);
+bool diffCheckF(float val, float oldVal, float K);
 
 #endif

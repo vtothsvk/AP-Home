@@ -293,7 +293,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       delay(100);
     }
 
-    if (diffCheckF(data.bmeSmoke, oldData.bmeSmoke)) {
+    if (diffCheckF(data.bmeSmoke, oldData.bmeSmoke, DIFF_K * 2)) {
       sprintf(&payload[0], "{\
       \"sn\": \"%s\",\
       \"kid\": \"%s\",\
@@ -316,7 +316,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       delay(100);
     }
     
-    if (diffCheck(data.lastGas, oldData.lastGas)) {
+    if (diffCheck(data.lastGas, oldData.lastGas, DIFF_K)) {
       sprintf(&payload[0], "{\
       \"sn\": \"%s\",\
       \"kid\": \"%s\",\
@@ -339,7 +339,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       delay(100);
     }
 
-    if (diffCheck(data.lastLight, oldData.lastLight)) {
+    if (diffCheck(data.lastLight, oldData.lastLight, DIFF_K)) {
       sprintf(&payload[0], "{\
       \"sn\": \"%s\",\
       \"kid\": \"%s\",\
@@ -362,7 +362,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       delay(100);
     }
 
-    if (diffCheck(data.lastPressure, oldData.lastPressure)) {
+    if (diffCheck(data.lastPressure, oldData.lastPressure, DIFF_K)) {
       sprintf(&payload[0], "{\
       \"sn\": \"%s\",\
       \"kid\": \"%s\",\
@@ -390,10 +390,10 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
     return ret;
 }
 
-bool diffCheck(uint8_t val, uint8_t oldVal) {
-  return (((val - oldVal) >= (DIFF_K * val)) || ((oldVal - val) >= (DIFF_K * val)));
+bool diffCheck(uint8_t val, uint8_t oldVal, float K) {
+  return (((val - oldVal) > (DIFF_K * val)) || ((oldVal - val) > (DIFF_K * val)));
 }
 
-bool diffCheckF(float val, float oldVal) {
-  return (((val - oldVal) >= (DIFF_K * val)) || ((oldVal - val) >= (DIFF_K * val)));
+bool diffCheckF(float val, float oldVal, float K) {
+  return (((val - oldVal) > (DIFF_K * val)) || ((oldVal - val) > (DIFF_K * val)));
 }
