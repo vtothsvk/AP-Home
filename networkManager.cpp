@@ -18,6 +18,10 @@ HTTPClient http;
 #define STUCK_TIME 600000//ms
 #define STUCK_MUTE 20000//ms
 
+//Diff thresholds
+#define DIFF_K  0.05//*100%
+#define SMOKE_DIFF_K DIFF_K * 2
+
 bool mHold = false;
 bool wasMotion = false;
 long motionTime = 0;
@@ -48,46 +52,15 @@ void runWifiManager() {
 }
 
 int advertiseData(ap_node_t data) {
-    bool stuck = false;
-
     http.begin(serverName);
     delay(100);
-
-    #ifdef DOOR
-    if (!mHold) {
-      if (stuckMute) {
-        if ((millis() - stuckMuteTime) >= STUCK_MUTE) {
-          stuckMute = false;
-        }
-      }
-
-      if (data.lastMotion && (!stuckMute)) {
-        if (!wasMotion) {
-          wasMotion = true;
-          motionTime = millis();
-          Serial.println("mot");
-        }else{
-          wasMotion = false;
-          stuckMute = true;
-          stuckMuteTime = millis();
-        }
-      }
-
-      if (wasMotion && ((millis() - motionTime) >= STUCK_TIME)) {
-        stuck = true;
-        wasMotion = false;
-      }
-    }
-
-    mHold = data.lastMotion;
-    #endif
 
     sprintf(&payload[0], "{\
     \"sn\": \"%s\",\
     \"kid\": \"%s\",\
     \"body\":\
-    [{ \"LoggerName\": \"PIR\", \"MeasuredData\": [{ \"Name\": \"motion\",\"Value\": %d }, { \"Name\": \"stuck\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
-    ]}", SN, kid, data.lastMotion, stuck, myId);
+    [{ \"LoggerName\": \"PIR\", \"MeasuredData\": [{ \"Name\": \"motion\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
+    ]}", SN, kid, data.lastMotion, myId);
     Serial.println();
     Serial.println(payload);
     Serial.println();
@@ -222,4 +195,208 @@ int advertiseData(ap_node_t data) {
     http.end();
 
     return ret;
+}
+
+
+int diffAdv(ap_node_t data, ap_node_t oldData) {
+    bool stuck = false;
+    int ret = 0;
+
+    http.begin(serverName);
+    delay(100);
+
+    sprintf(payload, "{dummy}");
+
+    http.addHeader("Content-Type", "application/json");
+
+    ret = http.POST(payload);
+    //kontrola responsu
+    if(ret != 200){
+      Serial.printf("ret: %d", ret);
+    } else {
+      Serial.println("OK");
+    }
+
+    delay(100);
+
+    #ifdef DOOR
+    if (!mHold) {
+      if (stuckMute) {
+        if ((millis() - stuckMuteTime) >= STUCK_MUTE) {
+          stuckMute = false;
+        }
+      }
+
+      if (data.lastMotion && (!stuckMute)) {
+        if (!wasMotion) {
+          wasMotion = true;
+          motionTime = millis();
+          Serial.println("mot");
+        }else{
+          wasMotion = false;
+          stuckMute = true;
+          stuckMuteTime = millis();
+        }
+      }
+
+      if (wasMotion && ((millis() - motionTime) >= STUCK_TIME)) {
+        stuck = true;
+        wasMotion = false;
+      }
+    }
+
+    mHold = data.lastMotion;
+    #endif
+
+    if (data.lastMotion != oldData.lastMotion) {
+      sprintf(&payload[0], "{\
+      \"sn\": \"%s\",\
+      \"kid\": \"%s\",\
+      \"body\":\
+      [{ \"LoggerName\": \"PIR\", \"MeasuredData\": [{ \"Name\": \"motion\",\"Value\": %d }, { \"Name\": \"stuck\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
+      ]}", SN, kid, data.lastMotion, stuck, myId);
+      Serial.println();
+      Serial.println(payload);
+      Serial.println();
+
+      http.addHeader("Content-Type", "application/json");
+
+      ret = http.POST(payload);
+      //kontrola responsu
+      if(ret != 200){
+        Serial.printf("ret: %d", ret);
+      } else {
+        Serial.println("OK");
+      }
+
+      delay(100);
+    }
+
+    if (stuck) {
+      sprintf(&payload[0], "{\
+      \"sn\": \"%s\",\
+      \"kid\": \"%s\",\
+      \"body\":\
+      [{ \"LoggerName\": \"PIR\", \"MeasuredData\": [{ \"Name\": \"stuck\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
+      ]}", SN, kid, stuck, myId);
+      Serial.println();
+      Serial.println(payload);
+      Serial.println();
+
+      http.addHeader("Content-Type", "application/json");
+
+      ret = http.POST(payload);
+      //kontrola responsu
+      if(ret != 200){
+        Serial.printf("ret: %d", ret);
+      } else {
+        Serial.println("OK");
+      }
+
+      delay(100);
+    }
+
+    if (diffCheckF(data.bmeSmoke, oldData.bmeSmoke, SMOKE_DIFF_K)) {
+      sprintf(&payload[0], "{\
+      \"sn\": \"%s\",\
+      \"kid\": \"%s\",\
+      \"body\":\
+      [{ \"LoggerName\": \"M1\", \"MeasuredData\": [{ \"Name\": \"smoke\",\"Value\": %.2f }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
+      ]}", SN, kid, data.bmeSmoke, myId);
+      Serial.println();
+      Serial.println(payload);
+      Serial.println();
+
+      http.addHeader("Content-Type", "application/json");
+      ret = http.POST(payload);
+      //kontrola responsu
+      if(ret != 200){
+        Serial.printf("ret: %d", ret);
+      } else {
+        Serial.println("OK");
+      }
+
+      delay(100);
+    }
+    
+    if (diffCheck(data.lastGas, oldData.lastGas, DIFF_K)) {
+      sprintf(&payload[0], "{\
+      \"sn\": \"%s\",\
+      \"kid\": \"%s\",\
+      \"body\":\
+      [{ \"LoggerName\": \"M2\", \"MeasuredData\": [{ \"Name\": \"gas\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
+      ]}", SN, kid, data.lastGas, myId);
+      Serial.println();
+      Serial.println(payload);
+      Serial.println();
+
+      http.addHeader("Content-Type", "application/json");
+      ret = http.POST(payload);
+      //kontrola responsu
+      if(ret != 200){
+        Serial.printf("ret: %d", ret);
+      } else {
+        Serial.println("OK");
+      }
+
+      delay(100);
+    }
+
+    if (diffCheck(data.lastLight, oldData.lastLight, DIFF_K)) {
+      sprintf(&payload[0], "{\
+      \"sn\": \"%s\",\
+      \"kid\": \"%s\",\
+      \"body\":\
+      [{ \"LoggerName\": \"LDR\", \"MeasuredData\": [{ \"Name\": \"light\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
+      ]}", SN, kid, data.lastLight, myId);
+      Serial.println();
+      Serial.println(payload);
+      Serial.println();
+
+      http.addHeader("Content-Type", "application/json");
+      ret = http.POST(payload);
+      //kontrola responsu
+      if(ret != 200){
+        Serial.printf("ret: %d", ret);
+      } else {
+        Serial.println("OK");
+      }
+
+      delay(100);
+    }
+
+    if (diffCheck(data.lastPressure, oldData.lastPressure, DIFF_K)) {
+      sprintf(&payload[0], "{\
+      \"sn\": \"%s\",\
+      \"kid\": \"%s\",\
+      \"body\":\
+      [{ \"LoggerName\": \"FSR\", \"MeasuredData\": [{ \"Name\": \"pressure\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
+      ]}", SN, kid, data.lastPressure, myId);
+      Serial.println();
+      Serial.println(payload);
+      Serial.println();
+
+      http.addHeader("Content-Type", "application/json");
+      ret = http.POST(payload);
+      //kontrola responsu
+      if(ret != 200){
+        Serial.printf("ret: %d", ret);
+      } else {
+        Serial.println("OK");
+      }
+
+      delay(100);
+    }
+
+    http.end();
+
+    return ret;
+}
+
+bool diffCheck(uint8_t val, uint8_t oldVal, float K) {
+  return (((val - oldVal) > (DIFF_K * val)) || ((oldVal - val) > (DIFF_K * val)));
+}
+
+bool diffCheckF(float val, float oldVal, float K) {
+  return (((val - oldVal) > (DIFF_K * val)) || ((oldVal - val) > (DIFF_K * val)));
 }
