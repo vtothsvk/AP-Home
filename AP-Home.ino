@@ -103,6 +103,8 @@ void loop() {
 
     diffAdv(data, oldData);
 
+    watchDog();
+
     oldData = data;
     delay(ADVERTISEMENT_INTERVAL * 1000);
     #endif
