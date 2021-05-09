@@ -65,7 +65,7 @@ int advertiseData(ap_node_t data) {
     ],\
     \"devId\": \"%s\", \
     \"includeTS\" : 1 ,
-    \"plen\": 1}", SN, kid, data.lastMotion, myId, offId);
+    \"plen\": 1}", SN, kid, data.lastMotion, myId);
     Serial.println();
     Serial.println(payload);
     Serial.println();
@@ -102,7 +102,7 @@ int advertiseData(ap_node_t data) {
     ],\
     \"devId\": \"%s\", \
     \"includeTS\" : 1 ,
-    \"plen\": 1}", SN, kid, data.bmeSmoke, myId, offId);
+    \"plen\": 1}", SN, kid, data.bmeSmoke, myId);
     Serial.println();
     Serial.println(payload);
     Serial.println();
@@ -126,7 +126,7 @@ int advertiseData(ap_node_t data) {
     ],\
     \"devId\": \"%s\", \
     \"includeTS\" : 1 ,
-    \"plen\": 1}", SN, kid, data.lastGas, myId, offId);
+    \"plen\": 1}", SN, kid, data.lastGas, myId);
     Serial.println();
     Serial.println(payload);
     Serial.println();
@@ -150,7 +150,7 @@ int advertiseData(ap_node_t data) {
     ],\
     \"devId\": \"%s\", \
     \"includeTS\" : 1 ,
-    \"plen\": 1}", SN, kid, data.lastLight, myId, offId);
+    \"plen\": 1}", SN, kid, data.lastLight, myId);
     Serial.println();
     Serial.println(payload);
     Serial.println();
@@ -174,7 +174,7 @@ int advertiseData(ap_node_t data) {
     ],\
     \"devId\": \"%s\", \
     \"includeTS\" : 1 ,
-    \"plen\": 1}", SN, kid, data.lastPressure, myId, offId);
+    \"plen\": 1}", SN, kid, data.lastPressure, myId);
     Serial.println();
     Serial.println(payload);
     Serial.println();
@@ -198,7 +198,7 @@ int advertiseData(ap_node_t data) {
     ],\
     \"devId\": \"%s\", \
     \"includeTS\" : 1 ,
-    \"plen\": 1}", SN, kid, data.lastTemperature, data.lastHumidity, myId, offId);
+    \"plen\": 1}", SN, kid, data.lastTemperature, data.lastHumidity, myId);
     Serial.println();
     Serial.println(payload);
     Serial.println();
@@ -277,7 +277,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       ]\
     \"devId\": \"%s\", \
     \"includeTS\" : 1 ,
-    \"plen\": 1}", SN, kid, data.lastMotion, stuck, myId, offId);
+    \"plen\": 1}", SN, kid, data.lastMotion, stuck, myId);
       Serial.println();
       Serial.println(payload);
       Serial.println();
@@ -304,7 +304,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       ]\
     \"devId\": \"%s\", \
     \"includeTS\" : 1 ,
-    \"plen\": 1}", SN, kid, stuck, myId, offId);
+    \"plen\": 1}", SN, kid, stuck, myId);
       Serial.println();
       Serial.println(payload);
       Serial.println();
@@ -331,7 +331,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       ]\
     \"devId\": \"%s\", \
     \"includeTS\" : 1 ,
-    \"plen\": 1}", SN, kid, data.bmeSmoke, myId, offId);
+    \"plen\": 1}", SN, kid, data.bmeSmoke, myId);
       Serial.println();
       Serial.println(payload);
       Serial.println();
@@ -357,7 +357,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       ]\
     \"devId\": \"%s\", \
     \"includeTS\" : 1 ,
-    \"plen\": 1}", SN, kid, data.lastGas, myId, offId);
+    \"plen\": 1}", SN, kid, data.lastGas, myId);
       Serial.println();
       Serial.println(payload);
       Serial.println();
@@ -383,7 +383,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       ]\
     \"devId\": \"%s\", \
     \"includeTS\" : 1 ,
-    \"plen\": 1}", SN, kid, data.lastLight, myId, offId);
+    \"plen\": 1}", SN, kid, data.lastLight, myId);
       Serial.println();
       Serial.println(payload);
       Serial.println();
@@ -409,7 +409,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       ]\
     \"devId\": \"%s\", \
     \"includeTS\" : 1 ,
-    \"plen\": 1}", SN, kid, data.lastPressure, myId, offId);
+    \"plen\": 1}", SN, kid, data.lastPressure, myId);
       Serial.println();
       Serial.println(payload);
       Serial.println();
@@ -441,6 +441,6 @@ bool diffCheckF(float val, float oldVal, float K) {
 
 void watchDog(void) {
   if (millis() >= DAY_TO_MS) {
-    esp_restart();
+    ESP.restart();
   }
 }
