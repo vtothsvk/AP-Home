@@ -274,7 +274,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       \"kid\": \"%s\",\
       \"body\":\
       [{ \"LoggerName\": \"PIR\", \"MeasuredData\": [{ \"Name\": \"motion\",\"Value\": %d }, { \"Name\": \"stuck\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
-      ]\
+      ], \
     \"devId\": \"%s\", \
     \"includeTS\" : 1 , \
     \"plen\": 1}", SN, kid, data.lastMotion, stuck, myId);
@@ -301,7 +301,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       \"kid\": \"%s\",\
       \"body\":\
       [{ \"LoggerName\": \"PIR\", \"MeasuredData\": [{ \"Name\": \"stuck\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
-      ]\
+      ], \
     \"devId\": \"%s\", \
     \"includeTS\" : 1 , \
     \"plen\": 1}", SN, kid, stuck, myId);
@@ -328,7 +328,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       \"kid\": \"%s\",\
       \"body\":\
       [{ \"LoggerName\": \"M1\", \"MeasuredData\": [{ \"Name\": \"smoke\",\"Value\": %.2f }], \"ServiceData\": [], \"DebugData\": [] } \
-      ]\
+      ], \
     \"devId\": \"%s\", \
     \"includeTS\" : 1 , \
     \"plen\": 1}", SN, kid, data.bmeSmoke, myId);
@@ -354,7 +354,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       \"kid\": \"%s\",\
       \"body\":\
       [{ \"LoggerName\": \"M2\", \"MeasuredData\": [{ \"Name\": \"gas\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
-      ]\
+      ], \
     \"devId\": \"%s\", \
     \"includeTS\" : 1 , \
     \"plen\": 1}", SN, kid, data.lastGas, myId);
@@ -380,7 +380,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       \"kid\": \"%s\",\
       \"body\":\
       [{ \"LoggerName\": \"LDR\", \"MeasuredData\": [{ \"Name\": \"light\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
-      ]\
+      ], \
     \"devId\": \"%s\", \
     \"includeTS\" : 1 , \
     \"plen\": 1}", SN, kid, data.lastLight, myId);
@@ -406,7 +406,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       \"kid\": \"%s\",\
       \"body\":\
       [{ \"LoggerName\": \"FSR\", \"MeasuredData\": [{ \"Name\": \"pressure\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
-      ]\
+      ], \
     \"devId\": \"%s\", \
     \"includeTS\" : 1 , \
     \"plen\": 1}", SN, kid, data.lastPressure, myId);
