@@ -64,7 +64,7 @@ int advertiseData(ap_node_t data) {
     [{ \"LoggerName\": \"PIR\", \"MeasuredData\": [{ \"Name\": \"motion\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
     ],\
     \"devId\": \"%s\", \
-    \"includeTS\" : 1 ,
+    \"includeTS\" : 1 , \
     \"plen\": 1}", SN, kid, data.lastMotion, myId);
     Serial.println();
     Serial.println(payload);
@@ -101,7 +101,7 @@ int advertiseData(ap_node_t data) {
     [{ \"LoggerName\": \"M1\", \"MeasuredData\": [{ \"Name\": \"smoke\",\"Value\": %.2f }], \"ServiceData\": [], \"DebugData\": [] } \
     ],\
     \"devId\": \"%s\", \
-    \"includeTS\" : 1 ,
+    \"includeTS\" : 1 , \
     \"plen\": 1}", SN, kid, data.bmeSmoke, myId);
     Serial.println();
     Serial.println(payload);
@@ -125,7 +125,7 @@ int advertiseData(ap_node_t data) {
     [{ \"LoggerName\": \"M2\", \"MeasuredData\": [{ \"Name\": \"gas\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
     ],\
     \"devId\": \"%s\", \
-    \"includeTS\" : 1 ,
+    \"includeTS\" : 1 , \
     \"plen\": 1}", SN, kid, data.lastGas, myId);
     Serial.println();
     Serial.println(payload);
@@ -149,7 +149,7 @@ int advertiseData(ap_node_t data) {
     [{ \"LoggerName\": \"LDR\", \"MeasuredData\": [{ \"Name\": \"light\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
     ],\
     \"devId\": \"%s\", \
-    \"includeTS\" : 1 ,
+    \"includeTS\" : 1 , \
     \"plen\": 1}", SN, kid, data.lastLight, myId);
     Serial.println();
     Serial.println(payload);
@@ -173,7 +173,7 @@ int advertiseData(ap_node_t data) {
     [{ \"LoggerName\": \"FSR\", \"MeasuredData\": [{ \"Name\": \"pressure\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
     ],\
     \"devId\": \"%s\", \
-    \"includeTS\" : 1 ,
+    \"includeTS\" : 1 , \
     \"plen\": 1}", SN, kid, data.lastPressure, myId);
     Serial.println();
     Serial.println(payload);
@@ -197,7 +197,7 @@ int advertiseData(ap_node_t data) {
     [{ \"LoggerName\": \"BME280\", \"MeasuredData\": [{ \"Name\": \"temperature\",\"Value\": %.2f }, { \"Name\": \"humidity\",\"Value\": %.2f }], \"ServiceData\": [], \"DebugData\": [] } \
     ],\
     \"devId\": \"%s\", \
-    \"includeTS\" : 1 ,
+    \"includeTS\" : 1 , \
     \"plen\": 1}", SN, kid, data.lastTemperature, data.lastHumidity, myId);
     Serial.println();
     Serial.println(payload);
@@ -276,7 +276,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       [{ \"LoggerName\": \"PIR\", \"MeasuredData\": [{ \"Name\": \"motion\",\"Value\": %d }, { \"Name\": \"stuck\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
       ]\
     \"devId\": \"%s\", \
-    \"includeTS\" : 1 ,
+    \"includeTS\" : 1 , \
     \"plen\": 1}", SN, kid, data.lastMotion, stuck, myId);
       Serial.println();
       Serial.println(payload);
@@ -303,7 +303,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       [{ \"LoggerName\": \"PIR\", \"MeasuredData\": [{ \"Name\": \"stuck\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
       ]\
     \"devId\": \"%s\", \
-    \"includeTS\" : 1 ,
+    \"includeTS\" : 1 , \
     \"plen\": 1}", SN, kid, stuck, myId);
       Serial.println();
       Serial.println(payload);
@@ -330,7 +330,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       [{ \"LoggerName\": \"M1\", \"MeasuredData\": [{ \"Name\": \"smoke\",\"Value\": %.2f }], \"ServiceData\": [], \"DebugData\": [] } \
       ]\
     \"devId\": \"%s\", \
-    \"includeTS\" : 1 ,
+    \"includeTS\" : 1 , \
     \"plen\": 1}", SN, kid, data.bmeSmoke, myId);
       Serial.println();
       Serial.println(payload);
@@ -356,7 +356,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       [{ \"LoggerName\": \"M2\", \"MeasuredData\": [{ \"Name\": \"gas\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
       ]\
     \"devId\": \"%s\", \
-    \"includeTS\" : 1 ,
+    \"includeTS\" : 1 , \
     \"plen\": 1}", SN, kid, data.lastGas, myId);
       Serial.println();
       Serial.println(payload);
@@ -382,7 +382,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       [{ \"LoggerName\": \"LDR\", \"MeasuredData\": [{ \"Name\": \"light\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
       ]\
     \"devId\": \"%s\", \
-    \"includeTS\" : 1 ,
+    \"includeTS\" : 1 , \
     \"plen\": 1}", SN, kid, data.lastLight, myId);
       Serial.println();
       Serial.println(payload);
@@ -408,7 +408,7 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       [{ \"LoggerName\": \"FSR\", \"MeasuredData\": [{ \"Name\": \"pressure\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
       ]\
     \"devId\": \"%s\", \
-    \"includeTS\" : 1 ,
+    \"includeTS\" : 1 , \
     \"plen\": 1}", SN, kid, data.lastPressure, myId);
       Serial.println();
       Serial.println(payload);
