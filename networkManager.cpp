@@ -1,6 +1,6 @@
 #include "networkManager.h"
 
-const char* serverName = "http://raspberrypi.local:1880/niceBridge";
+const char* serverName = "http://192.168.2.7:1880/niceBridge";
 char payload[1024];
 long cStart;
 
@@ -15,8 +15,10 @@ bool needConnect = true;
 
 HTTPClient http;
 
-#define STUCK_TIME 600000//ms
+#define STUCK_TIME 20000//ms
 #define STUCK_MUTE 20000//ms
+
+#define DAY_TO_MS 86400000//ms
 
 //Diff thresholds
 #define DIFF_K  0.05//*100%
@@ -59,8 +61,11 @@ int advertiseData(ap_node_t data) {
     \"sn\": \"%s\",\
     \"kid\": \"%s\",\
     \"body\":\
-    [{ \"LoggerName\": \"PIR\", \"MeasuredData\": [{ \"Name\": \"motion\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
-    ]}", SN, kid, data.lastMotion, myId);
+    [{ \"LoggerName\": \"PIR\", \"MeasuredData\": [{ \"Name\": \"motion\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
+    ],\
+    \"devId\": \"%s\", \
+    \"includeTS\" : 1 , \
+    \"plen\": 1}", SN, kid, data.lastMotion, myId);
     Serial.println();
     Serial.println(payload);
     Serial.println();
@@ -93,8 +98,11 @@ int advertiseData(ap_node_t data) {
     \"sn\": \"%s\",\
     \"kid\": \"%s\",\
     \"body\":\
-    [{ \"LoggerName\": \"M1\", \"MeasuredData\": [{ \"Name\": \"smoke\",\"Value\": %.2f }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
-    ]}", SN, kid, data.bmeSmoke, myId);
+    [{ \"LoggerName\": \"M1\", \"MeasuredData\": [{ \"Name\": \"smoke\",\"Value\": %.2f }], \"ServiceData\": [], \"DebugData\": [] } \
+    ],\
+    \"devId\": \"%s\", \
+    \"includeTS\" : 1 , \
+    \"plen\": 1}", SN, kid, data.bmeSmoke, myId);
     Serial.println();
     Serial.println(payload);
     Serial.println();
@@ -114,8 +122,11 @@ int advertiseData(ap_node_t data) {
     \"sn\": \"%s\",\
     \"kid\": \"%s\",\
     \"body\":\
-    [{ \"LoggerName\": \"M2\", \"MeasuredData\": [{ \"Name\": \"gas\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
-    ]}", SN, kid, data.lastGas, myId);
+    [{ \"LoggerName\": \"M2\", \"MeasuredData\": [{ \"Name\": \"gas\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
+    ],\
+    \"devId\": \"%s\", \
+    \"includeTS\" : 1 , \
+    \"plen\": 1}", SN, kid, data.lastGas, myId);
     Serial.println();
     Serial.println(payload);
     Serial.println();
@@ -135,8 +146,11 @@ int advertiseData(ap_node_t data) {
     \"sn\": \"%s\",\
     \"kid\": \"%s\",\
     \"body\":\
-    [{ \"LoggerName\": \"LDR\", \"MeasuredData\": [{ \"Name\": \"light\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
-    ]}", SN, kid, data.lastLight, myId);
+    [{ \"LoggerName\": \"LDR\", \"MeasuredData\": [{ \"Name\": \"light\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
+    ],\
+    \"devId\": \"%s\", \
+    \"includeTS\" : 1 , \
+    \"plen\": 1}", SN, kid, data.lastLight, myId);
     Serial.println();
     Serial.println(payload);
     Serial.println();
@@ -156,8 +170,11 @@ int advertiseData(ap_node_t data) {
     \"sn\": \"%s\",\
     \"kid\": \"%s\",\
     \"body\":\
-    [{ \"LoggerName\": \"FSR\", \"MeasuredData\": [{ \"Name\": \"pressure\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
-    ]}", SN, kid, data.lastPressure, myId);
+    [{ \"LoggerName\": \"FSR\", \"MeasuredData\": [{ \"Name\": \"pressure\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
+    ],\
+    \"devId\": \"%s\", \
+    \"includeTS\" : 1 , \
+    \"plen\": 1}", SN, kid, data.lastPressure, myId);
     Serial.println();
     Serial.println(payload);
     Serial.println();
@@ -177,8 +194,11 @@ int advertiseData(ap_node_t data) {
     \"sn\": \"%s\",\
     \"kid\": \"%s\",\
     \"body\":\
-    [{ \"LoggerName\": \"BME280\", \"MeasuredData\": [{ \"Name\": \"temperature\",\"Value\": %.2f }, { \"Name\": \"humidity\",\"Value\": %.2f }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
-    ]}", SN, kid, data.lastTemperature, data.lastHumidity, myId);
+    [{ \"LoggerName\": \"BME280\", \"MeasuredData\": [{ \"Name\": \"temperature\",\"Value\": %.2f }, { \"Name\": \"humidity\",\"Value\": %.2f }], \"ServiceData\": [], \"DebugData\": [] } \
+    ],\
+    \"devId\": \"%s\", \
+    \"includeTS\" : 1 , \
+    \"plen\": 1}", SN, kid, data.lastTemperature, data.lastHumidity, myId);
     Serial.println();
     Serial.println(payload);
     Serial.println();
@@ -253,8 +273,11 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       \"sn\": \"%s\",\
       \"kid\": \"%s\",\
       \"body\":\
-      [{ \"LoggerName\": \"PIR\", \"MeasuredData\": [{ \"Name\": \"motion\",\"Value\": %d }, { \"Name\": \"stuck\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
-      ]}", SN, kid, data.lastMotion, stuck, myId);
+      [{ \"LoggerName\": \"PIR\", \"MeasuredData\": [{ \"Name\": \"motion\",\"Value\": %d }, { \"Name\": \"stuck\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
+      ], \
+    \"devId\": \"%s\", \
+    \"includeTS\" : 1 , \
+    \"plen\": 1}", SN, kid, data.lastMotion, stuck, myId);
       Serial.println();
       Serial.println(payload);
       Serial.println();
@@ -277,8 +300,11 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       \"sn\": \"%s\",\
       \"kid\": \"%s\",\
       \"body\":\
-      [{ \"LoggerName\": \"PIR\", \"MeasuredData\": [{ \"Name\": \"stuck\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
-      ]}", SN, kid, stuck, myId);
+      [{ \"LoggerName\": \"PIR\", \"MeasuredData\": [{ \"Name\": \"stuck\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
+      ], \
+    \"devId\": \"%s\", \
+    \"includeTS\" : 1 , \
+    \"plen\": 1}", SN, kid, stuck, myId);
       Serial.println();
       Serial.println(payload);
       Serial.println();
@@ -301,8 +327,11 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       \"sn\": \"%s\",\
       \"kid\": \"%s\",\
       \"body\":\
-      [{ \"LoggerName\": \"M1\", \"MeasuredData\": [{ \"Name\": \"smoke\",\"Value\": %.2f }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
-      ]}", SN, kid, data.bmeSmoke, myId);
+      [{ \"LoggerName\": \"M1\", \"MeasuredData\": [{ \"Name\": \"smoke\",\"Value\": %.2f }], \"ServiceData\": [], \"DebugData\": [] } \
+      ], \
+    \"devId\": \"%s\", \
+    \"includeTS\" : 1 , \
+    \"plen\": 1}", SN, kid, data.bmeSmoke, myId);
       Serial.println();
       Serial.println(payload);
       Serial.println();
@@ -324,8 +353,11 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       \"sn\": \"%s\",\
       \"kid\": \"%s\",\
       \"body\":\
-      [{ \"LoggerName\": \"M2\", \"MeasuredData\": [{ \"Name\": \"gas\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
-      ]}", SN, kid, data.lastGas, myId);
+      [{ \"LoggerName\": \"M2\", \"MeasuredData\": [{ \"Name\": \"gas\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
+      ], \
+    \"devId\": \"%s\", \
+    \"includeTS\" : 1 , \
+    \"plen\": 1}", SN, kid, data.lastGas, myId);
       Serial.println();
       Serial.println(payload);
       Serial.println();
@@ -347,8 +379,11 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       \"sn\": \"%s\",\
       \"kid\": \"%s\",\
       \"body\":\
-      [{ \"LoggerName\": \"LDR\", \"MeasuredData\": [{ \"Name\": \"light\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
-      ]}", SN, kid, data.lastLight, myId);
+      [{ \"LoggerName\": \"LDR\", \"MeasuredData\": [{ \"Name\": \"light\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
+      ], \
+    \"devId\": \"%s\", \
+    \"includeTS\" : 1 , \
+    \"plen\": 1}", SN, kid, data.lastLight, myId);
       Serial.println();
       Serial.println(payload);
       Serial.println();
@@ -370,8 +405,11 @@ int diffAdv(ap_node_t data, ap_node_t oldData) {
       \"sn\": \"%s\",\
       \"kid\": \"%s\",\
       \"body\":\
-      [{ \"LoggerName\": \"FSR\", \"MeasuredData\": [{ \"Name\": \"pressure\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [], \"DeviceId\": \"%s\" } \
-      ]}", SN, kid, data.lastPressure, myId);
+      [{ \"LoggerName\": \"FSR\", \"MeasuredData\": [{ \"Name\": \"pressure\",\"Value\": %d }], \"ServiceData\": [], \"DebugData\": [] } \
+      ], \
+    \"devId\": \"%s\", \
+    \"includeTS\" : 1 , \
+    \"plen\": 1}", SN, kid, data.lastPressure, myId);
       Serial.println();
       Serial.println(payload);
       Serial.println();
@@ -399,4 +437,10 @@ bool diffCheck(uint8_t val, uint8_t oldVal, float K) {
 
 bool diffCheckF(float val, float oldVal, float K) {
   return (((val - oldVal) > (DIFF_K * val)) || ((oldVal - val) > (DIFF_K * val)));
+}
+
+void watchDog(void) {
+  if (millis() >= DAY_TO_MS) {
+    ESP.restart();
+  }
 }
